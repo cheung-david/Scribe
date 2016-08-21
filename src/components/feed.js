@@ -37,7 +37,7 @@ class Feature extends Component {
     
     handleSubmit(e) {
         e.preventDefault();
-        var host = 'http://52.39.6.195';
+        var host = 'https://52.39.6.195';
         var uploadURL = host + '/api/feed'; 
         var uploadFile = this.refs.file;
         //console.log(uploadFile);
