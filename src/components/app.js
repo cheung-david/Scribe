@@ -4,7 +4,7 @@ import Header from './header';
 
 export default class App extends Component {
   generateNav() {
-    if(this.props.location.pathname !== '/') {
+    if(this.props.location.pathname !== '/' && this.props.location.pathname !== '/Scribe/') {
       return <Header socket={this.props.route.socket} location={this.props.location} />;
     }
   }        
