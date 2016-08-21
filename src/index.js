@@ -19,7 +19,7 @@ import RequireAuth from './components/auth/require_auth';
 import reducers from './reducers';
 import { AUTH_USER } from './actions/types';
 import io from 'socket.io-client';
-var socket = io(`https://52.39.6.195`);
+var socket = io(`http://52.39.6.195`);
 
 const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
 const store = createStoreWithMiddleware(reducers);

@@ -5,7 +5,7 @@ import { AUTH_USER, UNAUTH_USER, AUTH_ERROR, FETCH_MESSAGE, FETCH_FEED, FETCH_LI
             UPDATE_USER, UN_UPDATE_USER, UPDATE_USER_PROFILE_PIC, UN_UPDATE_USER_PROFILE_PIC,
             UN_UPDATE_PASS, UPDATE_PASS, FETCH_FOLLOWERS_LIST } from './types';
 
-const ROOT_URL = 'https://52.39.6.195';
+const ROOT_URL = 'http://52.39.6.195';
 
 
 var axiosInstance = axios.create({
