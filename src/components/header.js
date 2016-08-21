@@ -49,7 +49,7 @@ class Header extends Component {
                             };
                         }
                         var link = `<Link to={user/${user._id}}> Link </Link>`;
-                        var url = `http://cheung-david.github.io/scribe/user/${user._id}`;
+                        var url = `https://cheung-david.github.io/Scribe/user/${user._id}`;
                         // add result to category
                         response.results[user._id].results.push({
                             title       : user.fullName,

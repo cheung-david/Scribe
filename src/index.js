@@ -19,7 +19,7 @@ import RequireAuth from './components/auth/require_auth';
 import reducers from './reducers';
 import { AUTH_USER } from './actions/types';
 import io from 'socket.io-client';
-var socket = io(`http://52.39.6.195`);
+var socket = io(`https://52.39.6.195`);
 
 const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
 const store = createStoreWithMiddleware(reducers);
@@ -34,7 +34,7 @@ if(token) {
 ReactDOM.render(
   <Provider store={store}>
     <Router history={browserHistory}>
-      <Route path="/" socket={socket} component={App}>
+      <Route path="/Scribe" socket={socket} component={App}>
       <IndexRoute component={Welcome} />
         <Route path="signin" component={SignIn} />
         <Route path="signout" component={SignOut} />
