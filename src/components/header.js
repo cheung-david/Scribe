@@ -33,7 +33,7 @@ class Header extends Component {
                     // translate GitHub API response to work with search
                     $.each(searchResults.users, function(index, user) {
                         var
-                            profilePic   = user.profilePic || '../../style/img/unknown_user.png',
+                            profilePic   = user.profilePic || 'style/img/unknown_user.png',
                             maxResults = 8
                         ;
                         if(index >= maxResults) {
