@@ -60,7 +60,7 @@ class UserProfile extends Component {
     
     generateUserContent() {
         if(this.props.user){
-           var profilePic = this.props.user.profilePic ? this.props.user.profilePic : "style/img/unknown_user.png"; 
+           var profilePic = this.props.user.profilePic ? this.props.user.profilePic : "../../style/img/unknown_user.png"; 
            return  ([<div className="ui card gallery_banner" key={1}> 
                     <div className="">
                         <div className="content">

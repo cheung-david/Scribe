@@ -68,7 +68,7 @@ class Card extends Component {
             var author = comment.author ? (comment.author.fullName || comment.author.email) : "";
             var profilePic;
             if(comment.author) {
-                profilePic = comment.author.profilePic ? comment.author.profilePic : "style/img/unknown_user.png";
+                profilePic = comment.author.profilePic ? comment.author.profilePic : "../../style/img/unknown_user.png";
                 profilePic = profilePic.split('?');
                 profilePic = profilePic[0];
             }
@@ -123,7 +123,7 @@ class Card extends Component {
                     <div className="content">
                         <div className="right floated meta">{timeSince(this.props.date)}</div>
                         <Link className="black" to={`user/${this.props.authorId}`}> 
-                            <img className="ui avatar image" src={this.props.profilePic || "style/img/unknown_user.png"}/>
+                            <img className="ui avatar image" src={this.props.profilePic || "../../style/img/unknown_user.png"}/>
                             {this.props.authorName}
                          </Link>
                     </div>
@@ -148,7 +148,7 @@ class Card extends Component {
                     <div className="extra content">
                         
                         <div className="ui fluid large transparent left icon input">
-                            <i className={"heart " + this.heartColour()}></i>
+                            <i onClick={this.addLike.bind(this, this.props.id)} className={"heart " + this.heartColour()}></i>
                             <input className="full-width" ref="comment" onKeyPress={this._handleKeyPress.bind(this)} type="text" placeholder="Add Comment..."/>
                         </div>
                         

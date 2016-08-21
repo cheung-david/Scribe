@@ -33,7 +33,7 @@ class Header extends Component {
                     // translate GitHub API response to work with search
                     $.each(searchResults.users, function(index, user) {
                         var
-                            profilePic   = user.profilePic || 'style/img/unknown_user.png',
+                            profilePic   = user.profilePic || '../../style/img/unknown_user.png',
                             maxResults = 8
                         ;
                         if(index >= maxResults) {
@@ -49,7 +49,7 @@ class Header extends Component {
                             };
                         }
                         var link = `<Link to={user/${user._id}}> Link </Link>`;
-                        var url = `https://scriber.me/user/${user._id}`;
+                        var url = `http://scriber.me/user/${user._id}`;
                         // add result to category
                         response.results[user._id].results.push({
                             title       : user.fullName,
@@ -120,7 +120,7 @@ class Header extends Component {
             var notifications = this.props.notifications.map(function(item) {
                 return (<div key={item._id} className="event">
                             <div className="label">
-                                <img src={item.profilePic || "../../style/img/Fullmetal-Alchemist.ico"} />
+                                <img src={item.profilePic || "../../style/img/unknown_user.png"} />
                             </div>
                             <div className="content">
                                 <div className="summary">
