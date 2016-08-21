@@ -1,0 +1,156 @@
+.landing {
+    font-family: "Roboto", serif !important;
+}
+
+header {
+  background-image: url('https://images.unsplash.com/photo-1460804198264-011ca89eaa43?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=88faad36f16933bb58c9e5f8ec52de14&fit=crop&w=2480&h=1300');
+  background-repeat: none;
+  background-attachment: scroll;
+  background-position: center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+  text-align: center;
+  color: white;
+}
+header .intro-text {
+  padding-top: 150px;
+  padding-bottom: 25px;
+}
+header .intro-text .intro-lead-in {
+  font-family: "Roboto", serif;
+  font-size: 22px;
+  line-height: 22px;
+  margin-bottom: 25px;
+  font-weight: 300;
+}
+header .intro-text .intro-heading {
+  font-family: "Roboto", serif;
+  font-weight: 700;
+  font-size: 50px;
+  line-height: 50px;
+  margin-bottom: 25px;
+}
+@media (min-width: 768px) {
+  header {
+    height: 865px;
+  }
+  header .intro-text {
+    padding-top: 350px;
+    padding-bottom: 200px;
+  }
+  header .intro-text .intro-lead-in {
+    font-family: "Roboto", serif;
+    font-size: 40px;
+    line-height: 40px;
+    margin-bottom: 25px;
+  }
+  header .intro-text .intro-heading {
+    font-family: "Roboto", serif;
+    font-weight: 700;
+    font-size: 75px;
+    line-height: 75px;
+    margin-bottom: 25px;
+  }
+}
+section {
+  padding: 0 0;
+}
+section h2.section-heading {
+  font-size: 40px;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+section h3.section-subheading {
+  font-size: 16px;
+   font-family: "Roboto", serif;
+  text-transform: none;
+  font-style: italic;
+  font-weight: 400;
+  margin-top: 5px;
+  margin-bottom: 35px;
+}
+
+@media (min-width: 768px) {
+  section {
+    padding: 100px 0;
+  }
+}
+.service-heading {
+  margin: 15px 0;
+  text-transform: none;
+}
+
+#services {
+    padding: 20px;
+    padding-bottom: 60px;
+}
+
+
+.btn-primary .badge {
+  color: #f05f40;
+  background-color: white;
+}
+.btn-xl {
+  color: white;
+  /*background-color: #f05f40;
+  border-color: #f05f40;*/
+  background-color: #337ab7;
+  border-color: #337ab7;
+  font-family: "Roboto", serif !important;
+  font-weight: 400 !important;
+  border-radius: 3px !important;
+  font-size: 18px !important;
+  padding: 12px 25px !important;
+}
+.btn-xl:hover,
+.btn-xl:focus,
+.btn-xl:active,
+.btn-xl.active,
+.open .dropdown-toggle.btn-xl {
+  color: white;
+  background-color: #285f8f;
+  border-color: #285f8f;
+}
+.btn-xl:active,
+.btn-xl.active,
+.open .dropdown-toggle.btn-xl {
+  background-image: none;
+}
+.btn-xl.disabled,
+.btn-xl[disabled],
+fieldset[disabled] .btn-xl,
+.btn-xl.disabled:hover,
+.btn-xl[disabled]:hover,
+fieldset[disabled] .btn-xl:hover,
+.btn-xl.disabled:focus,
+.btn-xl[disabled]:focus,
+fieldset[disabled] .btn-xl:focus,
+.btn-xl.disabled:active,
+.btn-xl[disabled]:active,
+fieldset[disabled] .btn-xl:active,
+.btn-xl.disabled.active,
+.btn-xl[disabled].active,
+fieldset[disabled] .btn-xl.active {
+  background-color: #337ab7;
+  border-color: #337ab7;
+}
+.btn-xl .badge {
+  color: #337ab7;
+  background-color: white;
+}
+
+.btn.focus, .btn:focus, .btn:hover {
+    color: white !important;
+    text-decoration: none;
+}
+
+.modal-title {
+  font-size: 20px !important;
+}
+
+.modal-content {
+  color: black;
+  font-size: 1.25em;
+}
