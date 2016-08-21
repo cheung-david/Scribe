@@ -136,7 +136,7 @@ class SignIn extends Component {
                 </div>
                 <div className="loginButton">
                     <a href="#" onClick={this.handleClick.bind(this)}>
-                        <img id="loginBtnImg" src="../../style/img/fbLoginBtn.png" alt="Sign-In with Facebook" />
+                        <img id="loginBtnImg" src="../../Scribe/style/img/fbLoginBtn.png" alt="Sign-In with Facebook" />
                     </a>
                 </div>    
             </div>      

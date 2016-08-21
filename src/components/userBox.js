@@ -27,7 +27,7 @@ class UserBox extends Component {
                         </div>
                     </div>
    
-                        <img src={this.props.user.profilePic || "../../style/img/unknown_user.png"} />
+                        <img src={this.props.user.profilePic || "../../Scribe/style/img/unknown_user.png"} />
                
                     </div>
                     <div className="content">
