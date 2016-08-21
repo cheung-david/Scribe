@@ -34,7 +34,7 @@ if(token) {
 ReactDOM.render(
   <Provider store={store}>
     <Router history={browserHistory}>
-      <Route path="/Scribe" socket={socket} component={App}>
+      <Route path="/" socket={socket} component={App}>
       <IndexRoute component={Welcome} />
         <Route path="signin" component={SignIn} />
         <Route path="signout" component={SignOut} />

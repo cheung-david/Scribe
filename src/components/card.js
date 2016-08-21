@@ -123,7 +123,7 @@ class Card extends Component {
                     <div className="content">
                         <div className="right floated meta">{timeSince(this.props.date)}</div>
                         <Link className="black" to={`user/${this.props.authorId}`}> 
-                            <img className="ui avatar image" src={this.props.profilePic || "../../Scribe/style/img/unknown_user.png"}/>
+                            <img className="ui avatar image" src={this.props.profilePic || "style/img/unknown_user.png"}/>
                             {this.props.authorName}
                          </Link>
                     </div>
