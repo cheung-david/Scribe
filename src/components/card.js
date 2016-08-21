@@ -68,7 +68,7 @@ class Card extends Component {
             var author = comment.author ? (comment.author.fullName || comment.author.email) : "";
             var profilePic;
             if(comment.author) {
-                profilePic = comment.author.profilePic ? comment.author.profilePic : "../../Scribe/style/img/unknown_user.png";
+                profilePic = comment.author.profilePic ? comment.author.profilePic : "style/img/unknown_user.png";
                 profilePic = profilePic.split('?');
                 profilePic = profilePic[0];
             }

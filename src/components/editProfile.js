@@ -93,7 +93,7 @@ class EditProfile extends Component {
         
     renderProfilePicture() {
         if(this.props.currentUser){
-            return this.props.currentUser.profilePic || "../../Scribe/style/img/unknown_user.png";
+            return this.props.currentUser.profilePic || "style/img/unknown_user.png";
         } else {
             return "";
         }
