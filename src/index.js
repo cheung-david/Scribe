@@ -20,8 +20,8 @@ import reducers from './reducers';
 import { AUTH_USER } from './actions/types';
 import io from 'socket.io-client';
 var socket = io(`http://52.39.6.195`);
-import createHistory from 'history/lib/createHashHistory';
-const appHistory = useRouterHistory(createHistory)({ queryKey: false });
+import { createHashHistory } from 'history';
+const appHistory = useRouterHistory(createHashHistory)({ queryKey: false });
 
 const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
 const store = createStoreWithMiddleware(reducers);
