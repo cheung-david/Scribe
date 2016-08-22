@@ -16,7 +16,7 @@ var axiosInstance = axios.create({
   withCredentials: true
 });
 
-export function signinUser({ email, password }) {
+export function signinUser({ email, password }, routerContext) {
     return function(dispatch) {
     // Submit email/password to server
     axios.post(`${ROOT_URL}/api/signin`, { email, password }, { withCredentials: true })
@@ -27,7 +27,8 @@ export function signinUser({ email, password }) {
             localStorage.setItem('token', response.data.token);
             // Redirect to main user page        
             //browserHistory.push('#/myfeed');  
-            history.push('/#/myfeed');      
+            history.push('/#/myfeed');   
+            routerContext.push("/myfeed");   
         })
         .catch(() => {
             // Show errors

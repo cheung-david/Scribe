@@ -4,12 +4,12 @@ import * as actions from '../../actions';
 
 class SignIn extends Component {
     static contextTypes = {
-        router: React.PropTypes.func.isRequired //React.PropTypes.object
+        router: React.PropTypes.object //React.PropTypes.func.isRequired //
     };
                 
     handleFormSubmit({ email, password }) {
         // TODO log user in
-        this.props.signinUser({ email, password });
+        this.props.signinUser({ email, password }, this.context.router);
     }
     
     handleFacebookAuth() {
@@ -70,11 +70,12 @@ class SignIn extends Component {
     successAPI() {
         // Image retrieval http://graph.facebook.com/userid_here/picture?type=large
         console.log('Welcome!  Fetching your information.... ');
+        var self = this;
         FB.api('/me?scope=email', function(response) {
             console.log(response);
             console.log('Successful login for: ' + response.name    );
             document.getElementById('status').innerHTML = 'Thanks for logging in, ' + response.name + '!';
-            this.context.router.push('/#/myfeed');
+            self.context.router.push('/#/myfeed');
         });
 
     }
