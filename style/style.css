@@ -244,6 +244,10 @@ header {
     color: indianred !important;
 }
 
+i.red.icon {
+    color: indianred !important;
+}
+
 .black {
     color: black;
     text-decoration: none;

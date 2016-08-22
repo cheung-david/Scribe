@@ -111,7 +111,7 @@ export function updateUser({ name, email, description }) {
     return function(dispatch) {
     axios.post(`${ROOT_URL}/api/user`, { name, email, description }, {  headers: { authorization: localStorage.getItem('token') }, withCredentials: true })
         .then(response => {
-            console.log(response, "updated user");
+            //console.log(response, "updated user");
             // Update state to indicate user is authenticated
             dispatch({ type: UPDATE_USER })       
         })
@@ -196,7 +196,7 @@ export function uploadProfilePic(image) {
   return function(dispatch) {
       axios.post(`${ROOT_URL}/api/profilepic`, image, { headers: { 'authorization': localStorage.getItem('token') } })
         .then(response => {
-                console.log(response, "uploading profile pic");
+                //console.log(response, "uploading profile pic");
                 // dispatch({
                 //     type: FETCH_CURRENT_USER,
                 //     payload: response.data.user
@@ -213,7 +213,7 @@ export function addLike(id) {
     return function(dispatch) {
         axios.post(`${ROOT_URL}/api/likes/${id}`, {}, { headers: { 'authorization': localStorage.getItem('token') } })
             .then(response => {
-                console.log("action likes " + response.data.likes);
+                //console.log("action likes " + response.data.likes);
                 dispatch({
                     type: FETCH_LIKES,
                     payload: response.data.likes
@@ -229,7 +229,7 @@ export function removeLike(id) {
     return function(dispatch) {
         axios.post(`${ROOT_URL}/api/unlikes/${id}`, {}, { headers: { 'authorization': localStorage.getItem('token') } })
             .then(response => {
-                console.log("action unlikes " + response.data.likes);
+                //console.log("action unlikes " + response.data.likes);
                 dispatch({
                     type: FETCH_LIKES,
                     payload: response.data.likes
@@ -268,7 +268,7 @@ export function follow(id) {
         axios.post(`${ROOT_URL}/api/follow/${id}`, {}, { headers: { 'authorization': localStorage.getItem('token') } }, 
             { withCredentials: true })
         .then(response => {
-            console.log(response.data.following, "Following", id);
+            //console.log(response.data.following, "Following", id);
                 dispatch({
                     type: FETCH_FOLLOWERS,
                     payload: response.data.following
@@ -302,7 +302,7 @@ export function fetchFollowing() {
         axios.get(`${ROOT_URL}/api/following`, { headers: { 'authorization': localStorage.getItem('token') } }, 
             { withCredentials: true })
         .then(response => {
-            console.log("dispatching follows", response);
+            //console.log("dispatching follows", response);
                 dispatch({
                     type: FETCH_FOLLOWERS,
                     payload: response.data.following
@@ -322,7 +322,7 @@ return function(dispatch) {
         axios.get(`${ROOT_URL}/api/user${curID}`, { headers: { 'authorization': localStorage.getItem('token') } }, 
             { withCredentials: true })
         .then(response => {
-            console.log("dispatching retrieve user", response);
+            //console.log("dispatching retrieve user", response);
                 dispatch({
                     type: type,
                     payload: response.data.user
@@ -340,7 +340,7 @@ return function(dispatch) {
         axios.get(`${ROOT_URL}/api/users`, { headers: { 'authorization': localStorage.getItem('token') } }, 
             { withCredentials: true })
         .then(response => {
-            console.log("dispatching follows", response);
+            //console.log("dispatching follows", response);
                 dispatch({
                     type: FETCH_USERS,
                     payload: response.data.users
@@ -393,7 +393,7 @@ return function(dispatch) {
         axios.post(`${ROOT_URL}/api/search`, {query}, { headers: { 'authorization': localStorage.getItem('token') } }, 
             { withCredentials: true })
         .then(response => {
-            console.log("dispatching follows", response);
+            //console.log("dispatching follows", response);
                 dispatch({
                     type: SEARCH_RESULTS,
                     payload: response.data.users
@@ -411,7 +411,7 @@ export function notify(id, content) {
         axios.post(`${ROOT_URL}/api/notify/notification/${id}`, content, { headers: { 'authorization': localStorage.getItem('token') } }, 
             { withCredentials: true })
         .then(response => {       
-            console.log("notify", response);
+            //console.log("notify", response);
         })
         .catch(error => {
             console.log(error);
@@ -425,7 +425,7 @@ export function fetchNotifications() {
             axios.get(`${ROOT_URL}/api/notify`, { headers: { 'authorization': localStorage.getItem('token') } }, 
                 { withCredentials: true })
             .then(response => {
-                console.log("dispatching fetch notifications", response);
+                //console.log("dispatching fetch notifications", response);
                     dispatch({
                         type: FETCH_NOTIFICATIONS,
                         payload: response.data.notifications
@@ -443,7 +443,7 @@ export function seenNotifications() {
             axios.get(`${ROOT_URL}/api/notify/seen`, { headers: { 'authorization': localStorage.getItem('token') } }, 
                 { withCredentials: true })
             .then(response => {
-                console.log("dispatching seen notifications", response);
+                //console.log("dispatching seen notifications", response);
                     // dispatch({
                     //     type: FETCH_NOTIFICATIONS,
                     //     payload: response.data.notifications
@@ -475,7 +475,7 @@ export function insertFollowerList(id){
     // Add user to follower list of who they just started following
     axios.post(`${ROOT_URL}/api/followlist/add/${id}`, {}, { headers: { 'authorization': localStorage.getItem('token') }, withCredentials: true })
         .then(response => {
-            console.log(response, "insert follower");
+            //console.log(response, "insert follower");
             dispatch({
                 type: FETCH_FOLLOWERS_LIST,
                 payload: response.data.followers
@@ -511,7 +511,7 @@ export function fetchFollowerList(id){
     // Add user to follower list of who they just started following
     axios.get(`${ROOT_URL}/api/followlist${curID}`, { headers: { 'authorization': localStorage.getItem('token') }, withCredentials: true })
         .then(response => {
-            console.log("fetch followers list", response);
+            //console.log("fetch followers list", response);
             dispatch({
                 type: FETCH_FOLLOWERS_LIST,
                 payload: response.data.followers
