@@ -148,7 +148,7 @@ class Card extends Component {
                     <div className="extra content">
                         
                         <div className="ui fluid large transparent left icon input">
-                            <i onClick={this.addLike.bind(this, this.props.id)} className={"heart " + this.heartColour()}></i>
+                            <span onClick={this.addLike.bind(this, this.props.id)} className={"heart " + this.heartColour()}></span>
                             <input className="full-width" ref="comment" onKeyPress={this._handleKeyPress.bind(this)} type="text" placeholder="Add Comment..."/>
                         </div>
                         

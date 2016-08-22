@@ -237,7 +237,7 @@ class Header extends Component {
         //   </nav>  
         <div className="ui secondary pointing menu">
                 <Link className="header item" to="/myfeed">
-                    <span>App &nbsp;</span><i className="fa fa-camera-retro fa-lg" aria-hidden="true"></i> 
+                    <span>Scribe &nbsp;</span><i className="fa fa-camera-retro fa-lg" aria-hidden="true"></i> 
                 </Link>     
                 {this.renderHeader()}
         </div>
