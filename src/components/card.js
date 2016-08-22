@@ -133,10 +133,10 @@ class Card extends Component {
                     </div>
                     
                     <div className="content">
-                        <span onClick={this.addLike.bind(this, this.props.id)} className="right floated">
+                        <a onClick={this.addLike.bind(this, this.props.id)} className="right floated">
                         <i className="heart outline like icon"></i>
                         <span ref="likes">{this.state.dynamicLikes}</span> likes
-                        </span>
+                        </a>
                         <a data-toggle="collapse" data-target={"#collapse" + this.props.id} aria-expanded="false" aria-controls={"#collapse" + this.props.id} >
                             <i className="comment icon"></i>
                             {this.props.comments.length || "No"} comments
@@ -148,7 +148,7 @@ class Card extends Component {
                     <div className="extra content">
                         
                         <div className="ui fluid large transparent left icon input">
-                            <span onClick={this.addLike.bind(this, this.props.id)} className={"heart " + this.heartColour()}></span>
+                            <a onClick={this.addLike.bind(this, this.props.id)} ><i className={"heart " + this.heartColour()}></i></a>
                             <input className="full-width" ref="comment" onKeyPress={this._handleKeyPress.bind(this)} type="text" placeholder="Add Comment..."/>
                         </div>
                         
