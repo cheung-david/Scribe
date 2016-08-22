@@ -20,51 +20,7 @@ class Header extends Component {
         this.props.fetchNotifications();
     }
     
-    componentDidMount() {
-        $('.ui.search')
-        .search({
-            type          : 'category',
-            minCharacters : 2,
-            searchDelay   : 500,
-            apiSettings: {   
-                onResponse: function(searchResults) {
-                    var
-                    response = {
-                        results : {}
-                    }
-                    ;
-                    // translate GitHub API response to work with search
-                    $.each(searchResults.users, function(index, user) {
-                        var
-                            profilePic   = user.profilePic || '../../style/img/unknown_user.png',
-                            maxResults = 8
-                        ;
-                        if(index >= maxResults) {
-                            return false;
-                        }
-                        var image = `<img class="ui avatar image" src=${profilePic} />`;
-                        
-                        // create new language category
-                        if(response.results[user._id] === undefined) {
-                            response.results[user._id] = {
-                            name    : image,
-                            results : []
-                            };
-                        }
-                        const href = history.createHref(`/#/user/${user._id}`);
-                        var link = `<Link to={user/${user._id}}></Link>`;
-                        var url = `http://scriber.me/#/user/${user._id}`;
-                        // add result to category
-                        response.results[user._id].results.push({
-                            title       : `<Link to={user/${user._id}}>${user.fullName}</Link>`,
-                            description : `<Link to={user/${user._id}}>${user.description || user.fullName}</Link>`,
-                        });
-                    });
-                    return response;
-                },
-                url: '//52.39.6.195/api/altsearch?q={query}',
-            }
-        });  
+    componentDidMount() {  
           
           
         // Preserve 'this' reference
@@ -227,6 +183,51 @@ class Header extends Component {
     }
     
     render() {
+        // This could be more efficient
+        $('.ui.search')
+        .search({
+            type          : 'category',
+            minCharacters : 2,
+            searchDelay   : 500,
+            apiSettings: {   
+                onResponse: function(searchResults) {
+                    var
+                    response = {
+                        results : {}
+                    }
+                    ;
+                    // translate GitHub API response to work with search
+                    $.each(searchResults.users, function(index, user) {
+                        var
+                            profilePic   = user.profilePic || '../../style/img/unknown_user.png',
+                            maxResults = 8
+                        ;
+                        if(index >= maxResults) {
+                            return false;
+                        }
+                        var image = `<img class="ui avatar image" src=${profilePic} />`;
+                        
+                        // create new language category
+                        if(response.results[user._id] === undefined) {
+                            response.results[user._id] = {
+                            name    : image,
+                            results : []
+                            };
+                        }
+                        const href = history.createHref(`/#/user/${user._id}`);
+                        var link = `<Link to={user/${user._id}}></Link>`;
+                        var url = `http://scriber.me/#/user/${user._id}`;
+                        // add result to category
+                        response.results[user._id].results.push({
+                            title       : `<Link to={user/${user._id}}>${user.fullName}</Link>`,
+                            description : `<Link to={user/${user._id}}>${user.description || user.fullName}</Link>`,
+                        });
+                    });
+                    return response;
+                },
+                url: '//52.39.6.195/api/altsearch?q={query}',
+            }
+        });
         return (
         //   <nav className="navbar navbar-inverse">
         //     <div className="container-fluid">
