@@ -56,9 +56,8 @@ class Header extends Component {
                         var url = `http://scriber.me/#/user/${user._id}`;
                         // add result to category
                         response.results[user._id].results.push({
-                            title       : user.fullName,
-                            description : user.description || user.fullName,
-                            url         : href
+                            title       : `<Link to={user/${user._id}}>${user.fullName}</Link>`,
+                            description : `<Link to={user/${user._id}}>${user.description || user.fullName}</Link>`,
                         });
                     });
                     return response;
