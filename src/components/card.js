@@ -133,7 +133,7 @@ class Card extends Component {
                     </div>
                     
                     <div className="content">
-                        <a onClick={this.addLike.bind(this, this.props.id)} className="right floated">
+                        <a onClick={this.addLike.bind(this, this.props.id)} className="right floated special-link">
                         <i className="heart outline like icon"></i>
                         <span ref="likes">{this.state.dynamicLikes}</span> likes
                         </a>
