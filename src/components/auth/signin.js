@@ -4,8 +4,8 @@ import * as actions from '../../actions';
 
 class SignIn extends Component {
     static contextTypes = {
-        router: React.PropTypes.object
-    }
+        router: React.PropTypes.func.isRequired //React.PropTypes.object
+    };
                 
     handleFormSubmit({ email, password }) {
         // TODO log user in
