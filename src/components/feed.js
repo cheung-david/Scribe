@@ -27,7 +27,7 @@ class Feature extends Component {
         // On image update event emission...
         socket.on('updateView', function(data) {
             var newFeed = self.props.feed;
-            console.log("updateView", data);
+            //console.log("updateView", data);
             newFeed.unshift(data);
             self.setState({ feed: newFeed });
             //self.props.fetchFeed();
