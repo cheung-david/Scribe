@@ -221,6 +221,7 @@ class Header extends Component {
                         response.results[user._id].results.push({
                             title       : `<Link to={user/${user._id}}>${user.fullName}</Link>`,
                             description : `<Link to={user/${user._id}}>${user.description || user.fullName}</Link>`,
+                            url: href
                         });
                     });
                     return response;

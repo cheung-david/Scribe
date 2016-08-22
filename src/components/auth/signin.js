@@ -75,7 +75,7 @@ class SignIn extends Component {
             console.log(response);
             console.log('Successful login for: ' + response.name    );
             document.getElementById('status').innerHTML = 'Thanks for logging in, ' + response.name + '!';
-            self.context.router.push('/myfeed');
+            //self.context.router.push('/myfeed');
         });
 
     }
@@ -89,7 +89,7 @@ class SignIn extends Component {
         // Full docs on the response object can be found in the documentation
         // for FB.getLoginStatus().
         if (response.status === 'connected') {
-            this.props.signinUserFB(response.authResponse.accessToken);
+            this.props.signinUserFB(response.authResponse.accessToken, this.context.router);
             // Logged into your app and Facebook.
             this.successAPI();
         } else if (response.status === 'not_authorized') {
