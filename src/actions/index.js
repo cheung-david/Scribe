@@ -27,7 +27,7 @@ export function signinUser({ email, password }) {
             localStorage.setItem('token', response.data.token);
             // Redirect to main user page        
             //browserHistory.push('#/myfeed');  
-            history.push('/myfeed');      
+            history.push('/#/myfeed');      
         })
         .catch(() => {
             // Show errors
@@ -49,7 +49,7 @@ export function signinUserFB(token) {
             dispatch({ type: AUTH_USER });
             // Redirect to main user page        
              history.push({
-                pathname: '/myfeed'
+                pathname: '/#/myfeed'
             });       
         })
         .catch(() => {
@@ -106,7 +106,7 @@ export function signupUser({ name, email, password }) {
             // Redirect to main user page        
             //browserHistory.push('#/myfeed');
             history.push({
-                pathname: '/myfeed'
+                pathname: '/#/myfeed'
             });        
         })
         .catch((error) => {

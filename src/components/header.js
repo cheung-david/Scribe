@@ -51,7 +51,7 @@ class Header extends Component {
                             results : []
                             };
                         }
-                        const href = history.createHref(`#/user/${user._id}`);
+                        const href = history.createHref(`/#/user/${user._id}`);
                         var link = `<Link to={user/${user._id}}></Link>`;
                         var url = `http://scriber.me/#/user/${user._id}`;
                         // add result to category

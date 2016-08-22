@@ -30550,7 +30550,7 @@
 	            localStorage.setItem('token', response.data.token);
 	            // Redirect to main user page       
 	            //browserHistory.push('#/myfeed'); 
-	            history.push('/myfeed');
+	            history.push('/#/myfeed');
 	        }).catch(function () {
 	            // Show errors
 	            dispatch(authError('Invalid Login Info!'));
@@ -30570,7 +30570,7 @@
 	            dispatch({ type: _types.AUTH_USER });
 	            // Redirect to main user page       
 	            history.push({
-	                pathname: '/myfeed'
+	                pathname: '/#/myfeed'
 	            });
 	        }).catch(function () {
 	            // Show errors
@@ -30627,7 +30627,7 @@
 	            // Redirect to main user page       
 	            //browserHistory.push('#/myfeed');
 	            history.push({
-	                pathname: '/myfeed'
+	                pathname: '/#/myfeed'
 	            });
 	        }).catch(function (error) {
 	            // Show errors
@@ -34690,7 +34690,7 @@
 	                console.log(response);
 	                console.log('Successful login for: ' + response.name);
 	                document.getElementById('status').innerHTML = 'Thanks for logging in, ' + response.name + '!';
-	                this.context.router.push('#/myfeed');
+	                this.context.router.push('/#/myfeed');
 	            });
 	        }
 
@@ -35038,7 +35038,7 @@
 	                                    results: []
 	                                };
 	                            }
-	                            var href = history.createHref('#/user/' + user._id);
+	                            var href = history.createHref('/#/user/' + user._id);
 	                            var link = '<Link to={user/' + user._id + '}></Link>';
 	                            var url = 'http://scriber.me/#/user/' + user._id;
 	                            // add result to category
@@ -52038,12 +52038,12 @@
 	dispatch({type:_types.AUTH_USER});// Save JWT token
 	localStorage.setItem('token',response.data.token);// Redirect to main user page       
 	//browserHistory.push('#/myfeed'); 
-	history.push('/myfeed');}).catch(function(){// Show errors
+	history.push('/#/myfeed');}).catch(function(){// Show errors
 	dispatch(authError('Invalid Login Info!'));});};}function signinUserFB(token){return function(dispatch){// Submit email/password to server
 	_axios2.default.get(ROOT_URL+'/api/signin/auth/facebook',{headers:{access_token:token},withCredentials:true}).then(function(response){console.log(response);// Update state to indicate user is authenticated
 	dispatch({type:_types.AUTH_USER});// Save JWT token
 	localStorage.setItem('token',response.data.token);dispatch({type:_types.AUTH_USER});// Redirect to main user page       
-	history.push({pathname:'/myfeed'});}).catch(function(){// Show errors
+	history.push({pathname:'/#/myfeed'});}).catch(function(){// Show errors
 	dispatch(authError('Invalid Login Info!'));});};}function signinUserTW(){return function(dispatch){// Submit email/password to server
 	_axios2.default.post(ROOT_URL+'/api/signin/auth/twitter',{},{withCredentials:true}).then(function(response){// Update state to indicate user is authenticated
 	dispatch({type:_types.AUTH_USER});// Save JWT token
@@ -52053,7 +52053,7 @@
 	dispatch({type:_types.AUTH_USER});// Save JWT token
 	localStorage.setItem('token',response.data.token);// Redirect to main user page       
 	//browserHistory.push('#/myfeed');
-	history.push({pathname:'/myfeed'});}).catch(function(error){// Show errors
+	history.push({pathname:'/#/myfeed'});}).catch(function(error){// Show errors
 	dispatch(authError(error));});};}function updateUser(_ref3){var name=_ref3.name;var email=_ref3.email;var description=_ref3.description;return function(dispatch){_axios2.default.post(ROOT_URL+'/api/user',{name:name,email:email,description:description},{headers:{authorization:localStorage.getItem('token')},withCredentials:true}).then(function(response){//console.log(response, "updated user");
 	// Update state to indicate user is authenticated
 	dispatch({type:_types.UPDATE_USER});}).catch(function(error){console.log(error);// Show errors
@@ -52546,7 +52546,7 @@
 	(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(d.getElementById(id))return;js=d.createElement(s);js.id=id;js.src="//connect.facebook.net/en_US/sdk.js";fjs.parentNode.insertBefore(js,fjs);})(document,'script','facebook-jssdk');}// Here we run a very simple test of the Graph API after login is
 	// successful.  See statusChangeCallback() for when this call is made.
 	},{key:'successAPI',value:function successAPI(){// Image retrieval http://graph.facebook.com/userid_here/picture?type=large
-	console.log('Welcome!  Fetching your information.... ');FB.api('/me?scope=email',function(response){console.log(response);console.log('Successful login for: '+response.name);document.getElementById('status').innerHTML='Thanks for logging in, '+response.name+'!';this.context.router.push('#/myfeed');});}// This is called with the results from from FB.getLoginStatus().
+	console.log('Welcome!  Fetching your information.... ');FB.api('/me?scope=email',function(response){console.log(response);console.log('Successful login for: '+response.name);document.getElementById('status').innerHTML='Thanks for logging in, '+response.name+'!';this.context.router.push('/#/myfeed');});}// This is called with the results from from FB.getLoginStatus().
 	},{key:'statusChangeCallback',value:function statusChangeCallback(response){console.log('statusChangeCallback');console.log(response);// The response object is returned with a status field that lets the
 	// app know the current login status of the person.
 	// Full docs on the response object can be found in the documentation
@@ -52564,7 +52564,7 @@
 	// </a>
 	SignIn.contextTypes={router:_react2.default.PropTypes.func.isRequired};function mapStateToProps(state){return{errorMessage:state.auth.error};}exports.default=(0,_reduxForm.reduxForm)({form:'signin',fields:['email','password']},mapStateToProps,actions)(SignIn);/***/},/* 346 *//***/function(module,exports,__webpack_require__){'use strict';Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();var _react=__webpack_require__(2);var _react2=_interopRequireDefault(_react);var _reactRedux=__webpack_require__(160);var _actions=__webpack_require__(297);var actions=_interopRequireWildcard(_actions);function _interopRequireWildcard(obj){if(obj&&obj.__esModule){return obj;}else{var newObj={};if(obj!=null){for(var key in obj){if(Object.prototype.hasOwnProperty.call(obj,key))newObj[key]=obj[key];}}newObj.default=obj;return newObj;}}function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}function _possibleConstructorReturn(self,call){if(!self){throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return call&&((typeof call==="undefined"?"undefined":_typeof2(call))==="object"||typeof call==="function")?call:self;}function _inherits(subClass,superClass){if(typeof superClass!=="function"&&superClass!==null){throw new TypeError("Super expression must either be null or a function, not "+(typeof superClass==="undefined"?"undefined":_typeof2(superClass)));}subClass.prototype=Object.create(superClass&&superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__=superClass;}var SignOut=function(_Component){_inherits(SignOut,_Component);function SignOut(){_classCallCheck(this,SignOut);return _possibleConstructorReturn(this,Object.getPrototypeOf(SignOut).apply(this,arguments));}_createClass(SignOut,[{key:'componentWillMount',value:function componentWillMount(){this.props.signoutUser();}},{key:'componentDidMount',value:function componentDidMount(){var self=this;setTimeout(function(){self.context.router.push('/');},2000);}},{key:'render',value:function render(){return _react2.default.createElement('div',{className:'container'},_react2.default.createElement('h2',null,' Logging out '),_react2.default.createElement('h3',null,'See you again next time!'));}}]);return SignOut;}(_react.Component);SignOut.contextTypes={router:_react2.default.PropTypes.object.isRequired};exports.default=(0,_reactRedux.connect)(null,actions)(SignOut);/***/},/* 347 *//***/function(module,exports,__webpack_require__){'use strict';Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();var _react=__webpack_require__(2);var _react2=_interopRequireDefault(_react);var _header=__webpack_require__(348);var _header2=_interopRequireDefault(_header);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}function _possibleConstructorReturn(self,call){if(!self){throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return call&&((typeof call==="undefined"?"undefined":_typeof2(call))==="object"||typeof call==="function")?call:self;}function _inherits(subClass,superClass){if(typeof superClass!=="function"&&superClass!==null){throw new TypeError("Super expression must either be null or a function, not "+(typeof superClass==="undefined"?"undefined":_typeof2(superClass)));}subClass.prototype=Object.create(superClass&&superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__=superClass;}var App=function(_Component){_inherits(App,_Component);function App(){_classCallCheck(this,App);return _possibleConstructorReturn(this,Object.getPrototypeOf(App).apply(this,arguments));}_createClass(App,[{key:'generateNav',value:function generateNav(){if(this.props.location.pathname!=='/'&&this.props.location.pathname!=='/Scribe/'){return _react2.default.createElement(_header2.default,{socket:this.props.route.socket,location:this.props.location});}}},{key:'render',value:function render(){return _react2.default.createElement('div',null,this.generateNav(),this.props.children);}}]);return App;}(_react.Component);exports.default=App;/***/},/* 348 *//***/function(module,exports,__webpack_require__){'use strict';Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();var _react=__webpack_require__(2);var _react2=_interopRequireDefault(_react);var _reactRouter=__webpack_require__(186);var _reactRedux=__webpack_require__(160);var _actions=__webpack_require__(297);var actions=_interopRequireWildcard(_actions);var _history=__webpack_require__(317);function _interopRequireWildcard(obj){if(obj&&obj.__esModule){return obj;}else{var newObj={};if(obj!=null){for(var key in obj){if(Object.prototype.hasOwnProperty.call(obj,key))newObj[key]=obj[key];}}newObj.default=obj;return newObj;}}function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}function _possibleConstructorReturn(self,call){if(!self){throw new ReferenceError("this hasn't been initialised - super() hasn't been called");}return call&&((typeof call==="undefined"?"undefined":_typeof2(call))==="object"||typeof call==="function")?call:self;}function _inherits(subClass,superClass){if(typeof superClass!=="function"&&superClass!==null){throw new TypeError("Super expression must either be null or a function, not "+(typeof superClass==="undefined"?"undefined":_typeof2(superClass)));}subClass.prototype=Object.create(superClass&&superClass.prototype,{constructor:{value:subClass,enumerable:false,writable:true,configurable:true}});if(superClass)Object.setPrototypeOf?Object.setPrototypeOf(subClass,superClass):subClass.__proto__=superClass;}var history=(0,_history.createHistory)();var timeoutID=null;var Header=function(_Component){_inherits(Header,_Component);function Header(props){_classCallCheck(this,Header);var _this=_possibleConstructorReturn(this,Object.getPrototypeOf(Header).call(this,props));_this.state={};return _this;}_createClass(Header,[{key:'componentWillMount',value:function componentWillMount(){this.props.fetchUser();this.props.fetchNotifications();}},{key:'componentDidMount',value:function componentDidMount(){$('.ui.search').search({type:'category',minCharacters:2,searchDelay:500,apiSettings:{onResponse:function onResponse(searchResults){var response={results:{}};// translate GitHub API response to work with search
 	$.each(searchResults.users,function(index,user){var profilePic=user.profilePic||'../../style/img/unknown_user.png',maxResults=8;if(index>=maxResults){return false;}var image='<img class="ui avatar image" src='+profilePic+' />';// create new language category
-	if(response.results[user._id]===undefined){response.results[user._id]={name:image,results:[]};}var href=history.createHref('#/user/'+user._id);var link='<Link to={user/'+user._id+'}></Link>';var url='http://scriber.me/#/user/'+user._id;// add result to category
+	if(response.results[user._id]===undefined){response.results[user._id]={name:image,results:[]};}var href=history.createHref('/#/user/'+user._id);var link='<Link to={user/'+user._id+'}></Link>';var url='http://scriber.me/#/user/'+user._id;// add result to category
 	response.results[user._id].results.push({title:user.fullName,description:user.description||user.fullName,url:href});});return response;},url:'//52.39.6.195/api/altsearch?q={query}'}});// Preserve 'this' reference
 	var self=this;var socket=this.props.socket;if(this.props.currentUser){//console.log("current user");
 	socket.emit('username',this.props.currentUser._id);}// On notification event emission...
