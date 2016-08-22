@@ -1,6 +1,8 @@
 import axios from 'axios';
 import { browserHistory } from 'react-router';
 import { createHistory } from 'history'
+const history = createHistory();
+
 import { AUTH_USER, UNAUTH_USER, AUTH_ERROR, FETCH_MESSAGE, FETCH_FEED, FETCH_LIKES, FETCH_FOLLOWERS, 
             FETCH_CURRENT_USER, FETCH_USERS, FETCH_USER, FETCH_POSTS, SEARCH_RESULTS, FETCH_NOTIFICATIONS,
             UPDATE_USER, UN_UPDATE_USER, UPDATE_USER_PROFILE_PIC, UN_UPDATE_USER_PROFILE_PIC,
@@ -24,10 +26,8 @@ export function signinUser({ email, password }) {
             // Save JWT token
             localStorage.setItem('token', response.data.token);
             // Redirect to main user page        
-            browserHistory.push('#/myfeed');  
-            history.push({
-                pathname: '/myfeed'
-            });      
+            //browserHistory.push('#/myfeed');  
+            history.push('/myfeed');      
         })
         .catch(() => {
             // Show errors
@@ -104,7 +104,7 @@ export function signupUser({ name, email, password }) {
             // Save JWT token
             localStorage.setItem('token', response.data.token);
             // Redirect to main user page        
-            browserHistory.push('#/myfeed');
+            //browserHistory.push('#/myfeed');
             history.push({
                 pathname: '/myfeed'
             });        
