@@ -48,13 +48,13 @@ class Header extends Component {
                             results : []
                             };
                         }
-                        var link = `<Link to={user/${user._id}}> Link </Link>`;
+                        var link = `<Link to={user/${user._id}}></Link>`;
                         var url = `http://scriber.me/user/${user._id}`;
                         // add result to category
                         response.results[user._id].results.push({
                             title       : user.fullName,
                             description : user.description || user.fullName,
-                            url         : url
+                            url         : link
                         });
                     });
                     return response;
@@ -68,17 +68,17 @@ class Header extends Component {
         var self = this;
         var socket = this.props.socket;
         if(this.props.currentUser){
-           console.log("current user");
+           //console.log("current user");
            socket.emit('username', this.props.currentUser._id); 
         }
         
         // On notification event emission...
         socket.on('notification', function(data) {
-            console.log("notification", data);
+            //console.log("notification", data);
             
             var notificationList = self.props.notifications;
             if(data) {
-                console.log("shifting");
+                //console.log("shifting");
                 notificationList.unshift(data);
             }            
             self.setState({notifications: notificationList});

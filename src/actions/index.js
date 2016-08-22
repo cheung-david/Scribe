@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { browserHistory } from 'react-router';
+import { createHistory } from 'history'
 import { AUTH_USER, UNAUTH_USER, AUTH_ERROR, FETCH_MESSAGE, FETCH_FEED, FETCH_LIKES, FETCH_FOLLOWERS, 
             FETCH_CURRENT_USER, FETCH_USERS, FETCH_USER, FETCH_POSTS, SEARCH_RESULTS, FETCH_NOTIFICATIONS,
             UPDATE_USER, UN_UPDATE_USER, UPDATE_USER_PROFILE_PIC, UN_UPDATE_USER_PROFILE_PIC,
