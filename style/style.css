@@ -241,7 +241,7 @@ header {
 
 
 .red {
-    color: indianred;
+    color: indianred !important;
 }
 
 .black {
