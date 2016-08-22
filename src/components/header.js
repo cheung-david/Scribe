@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
+import { createHistory } from 'history'
+
+const history = createHistory();
 var timeoutID = null;
 
 class Header extends Component {
@@ -48,13 +51,14 @@ class Header extends Component {
                             results : []
                             };
                         }
+                        const href = history.createHref(`/user/${user._id}`);
                         var link = `<Link to={user/${user._id}}></Link>`;
                         var url = `http://scriber.me/#/user/${user._id}`;
                         // add result to category
                         response.results[user._id].results.push({
                             title       : user.fullName,
                             description : user.description || user.fullName,
-                            url         : url
+                            url         : href
                         });
                     });
                     return response;
@@ -100,7 +104,7 @@ class Header extends Component {
     }
     
     notification() {
-        console.log(this.props.notifications, "fetched notifications");
+        //console.log(this.props.notifications, "fetched notifications");
         //var length = this.state.notification.length;
         if(this.props.notifications) {
             var length = this.props.notifications.filter(function(item) {
