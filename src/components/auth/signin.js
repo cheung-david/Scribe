@@ -75,7 +75,7 @@ class SignIn extends Component {
             console.log(response);
             console.log('Successful login for: ' + response.name    );
             document.getElementById('status').innerHTML = 'Thanks for logging in, ' + response.name + '!';
-            self.context.router.push('/#/myfeed');
+            self.context.router.push('/myfeed');
         });
 
     }
