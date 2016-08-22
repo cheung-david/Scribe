@@ -117,7 +117,7 @@ class Header extends Component {
     renderHeader() {
         var socket = this.props.socket;
         if(this.props.currentUser){
-           console.log("current user");
+           //console.log("current user");
            socket.emit('username', this.props.currentUser._id); 
         }
         
@@ -219,9 +219,9 @@ class Header extends Component {
                         var url = `http://scriber.me/#/user/${user._id}`;
                         // add result to category
                         response.results[user._id].results.push({
-                            title       : `<Link to={user/${user._id}}>${user.fullName}</Link>`,
-                            description : `<Link to={user/${user._id}}>${user.description || user.fullName}</Link>`,
-                            url: href
+                            title       : `<Link to='user/${user._id}'>${user.fullName}</Link>`,
+                            description : `<Link to='user/${user._id}'}>${user.description || user.fullName}</Link>`,
+                            url: url
                         });
                     });
                     return response;
