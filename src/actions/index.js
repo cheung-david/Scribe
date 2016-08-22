@@ -24,7 +24,10 @@ export function signinUser({ email, password }) {
             // Save JWT token
             localStorage.setItem('token', response.data.token);
             // Redirect to main user page        
-            browserHistory.push('#/myfeed');        
+            browserHistory.push('#/myfeed');  
+            history.push({
+                pathname: '/myfeed'
+            });      
         })
         .catch(() => {
             // Show errors
@@ -45,7 +48,9 @@ export function signinUserFB(token) {
             localStorage.setItem('token', response.data.token);
             dispatch({ type: AUTH_USER });
             // Redirect to main user page        
-            browserHistory.push('#/myfeed');        
+             history.push({
+                pathname: '/myfeed'
+            });       
         })
         .catch(() => {
             // Show errors
@@ -99,7 +104,10 @@ export function signupUser({ name, email, password }) {
             // Save JWT token
             localStorage.setItem('token', response.data.token);
             // Redirect to main user page        
-            browserHistory.push('#/myfeed');        
+            browserHistory.push('#/myfeed');
+            history.push({
+                pathname: '/myfeed'
+            });        
         })
         .catch((error) => {
             // Show errors

@@ -49,12 +49,12 @@ class Header extends Component {
                             };
                         }
                         var link = `<Link to={user/${user._id}}></Link>`;
-                        var url = `http://scriber.me/user/${user._id}`;
+                        var url = `http://scriber.me/#/user/${user._id}`;
                         // add result to category
                         response.results[user._id].results.push({
                             title       : user.fullName,
                             description : user.description || user.fullName,
-                            url         : link
+                            url         : url
                         });
                     });
                     return response;
