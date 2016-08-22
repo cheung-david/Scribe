@@ -46,7 +46,7 @@
 
 	__webpack_require__(1);
 	__webpack_require__(1);
-	module.exports = __webpack_require__(387);
+	module.exports = __webpack_require__(401);
 
 
 /***/ },
@@ -123,9 +123,15 @@
 
 	var _socket2 = _interopRequireDefault(_socket);
 
+	var _createHashHistory = __webpack_require__(387);
+
+	var _createHashHistory2 = _interopRequireDefault(_createHashHistory);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var socket = (0, _socket2.default)('http://52.39.6.195');
+
+	var appHistory = useRouterHistory(_createHashHistory2.default)({ queryKey: false });
 
 	var createStoreWithMiddleware = (0, _redux.applyMiddleware)(_reduxThunk2.default)(_redux.createStore);
 	var store = createStoreWithMiddleware(_reducers2.default);
@@ -142,7 +148,7 @@
 	  { store: store },
 	  _react2.default.createElement(
 	    _reactRouter.Router,
-	    { history: _reactRouter.browserHistory },
+	    { history: appHistory },
 	    _react2.default.createElement(
 	      _reactRouter.Route,
 	      { path: '/', socket: socket, component: _app2.default },
@@ -30629,7 +30635,7 @@
 
 	    return function (dispatch) {
 	        _axios2.default.post(ROOT_URL + '/api/user', { name: name, email: email, description: description }, { headers: { authorization: localStorage.getItem('token') }, withCredentials: true }).then(function (response) {
-	            console.log(response, "updated user");
+	            //console.log(response, "updated user");
 	            // Update state to indicate user is authenticated
 	            dispatch({ type: _types.UPDATE_USER });
 	        }).catch(function (error) {
@@ -30699,7 +30705,7 @@
 	function uploadProfilePic(image) {
 	    return function (dispatch) {
 	        _axios2.default.post(ROOT_URL + '/api/profilepic', image, { headers: { 'authorization': localStorage.getItem('token') } }).then(function (response) {
-	            console.log(response, "uploading profile pic");
+	            //console.log(response, "uploading profile pic");
 	            // dispatch({
 	            //     type: FETCH_CURRENT_USER,
 	            //     payload: response.data.user
@@ -30714,7 +30720,7 @@
 	function addLike(id) {
 	    return function (dispatch) {
 	        _axios2.default.post(ROOT_URL + '/api/likes/' + id, {}, { headers: { 'authorization': localStorage.getItem('token') } }).then(function (response) {
-	            console.log("action likes " + response.data.likes);
+	            //console.log("action likes " + response.data.likes);
 	            dispatch({
 	                type: _types.FETCH_LIKES,
 	                payload: response.data.likes
@@ -30728,7 +30734,7 @@
 	function removeLike(id) {
 	    return function (dispatch) {
 	        _axios2.default.post(ROOT_URL + '/api/unlikes/' + id, {}, { headers: { 'authorization': localStorage.getItem('token') } }).then(function (response) {
-	            console.log("action unlikes " + response.data.likes);
+	            //console.log("action unlikes " + response.data.likes);
 	            dispatch({
 	                type: _types.FETCH_LIKES,
 	                payload: response.data.likes
@@ -30758,7 +30764,7 @@
 	    // Send request to add userid to current user's follow list
 	    return function (dispatch) {
 	        _axios2.default.post(ROOT_URL + '/api/follow/' + id, {}, { headers: { 'authorization': localStorage.getItem('token') } }, { withCredentials: true }).then(function (response) {
-	            console.log(response.data.following, "Following", id);
+	            //console.log(response.data.following, "Following", id);
 	            dispatch({
 	                type: _types.FETCH_FOLLOWERS,
 	                payload: response.data.following
@@ -30786,7 +30792,7 @@
 	function fetchFollowing() {
 	    return function (dispatch) {
 	        _axios2.default.get(ROOT_URL + '/api/following', { headers: { 'authorization': localStorage.getItem('token') } }, { withCredentials: true }).then(function (response) {
-	            console.log("dispatching follows", response);
+	            //console.log("dispatching follows", response);
 	            dispatch({
 	                type: _types.FETCH_FOLLOWERS,
 	                payload: response.data.following
@@ -30803,7 +30809,7 @@
 	        var curID = id ? "/" + id : "";
 	        var type = id ? _types.FETCH_USER : _types.FETCH_CURRENT_USER;
 	        _axios2.default.get(ROOT_URL + '/api/user' + curID, { headers: { 'authorization': localStorage.getItem('token') } }, { withCredentials: true }).then(function (response) {
-	            console.log("dispatching retrieve user", response);
+	            //console.log("dispatching retrieve user", response);
 	            dispatch({
 	                type: type,
 	                payload: response.data.user
@@ -30818,7 +30824,7 @@
 	    // Retrieve all users
 	    return function (dispatch) {
 	        _axios2.default.get(ROOT_URL + '/api/users', { headers: { 'authorization': localStorage.getItem('token') } }, { withCredentials: true }).then(function (response) {
-	            console.log("dispatching follows", response);
+	            //console.log("dispatching follows", response);
 	            dispatch({
 	                type: _types.FETCH_USERS,
 	                payload: response.data.users
@@ -30865,7 +30871,7 @@
 	    // Retrieve all users
 	    return function (dispatch) {
 	        _axios2.default.post(ROOT_URL + '/api/search', { query: query }, { headers: { 'authorization': localStorage.getItem('token') } }, { withCredentials: true }).then(function (response) {
-	            console.log("dispatching follows", response);
+	            //console.log("dispatching follows", response);
 	            dispatch({
 	                type: _types.SEARCH_RESULTS,
 	                payload: response.data.users
@@ -30879,7 +30885,7 @@
 	function notify(id, content) {
 	    return function (dispatch) {
 	        _axios2.default.post(ROOT_URL + '/api/notify/notification/' + id, content, { headers: { 'authorization': localStorage.getItem('token') } }, { withCredentials: true }).then(function (response) {
-	            console.log("notify", response);
+	            //console.log("notify", response);
 	        }).catch(function (error) {
 	            console.log(error);
 	        });
@@ -30890,7 +30896,7 @@
 	    // Retrieve notifications
 	    return function (dispatch) {
 	        _axios2.default.get(ROOT_URL + '/api/notify', { headers: { 'authorization': localStorage.getItem('token') } }, { withCredentials: true }).then(function (response) {
-	            console.log("dispatching fetch notifications", response);
+	            //console.log("dispatching fetch notifications", response);
 	            dispatch({
 	                type: _types.FETCH_NOTIFICATIONS,
 	                payload: response.data.notifications
@@ -30905,11 +30911,11 @@
 	    // Retrieve notifications
 	    return function (dispatch) {
 	        _axios2.default.get(ROOT_URL + '/api/notify/seen', { headers: { 'authorization': localStorage.getItem('token') } }, { withCredentials: true }).then(function (response) {
-	            console.log("dispatching seen notifications", response);
+	            //console.log("dispatching seen notifications", response);
 	            // dispatch({
 	            //     type: FETCH_NOTIFICATIONS,
 	            //     payload: response.data.notifications
-	            // })  
+	            // })   
 	        }).catch(function (error) {
 	            console.log(error);
 	        });
@@ -30936,7 +30942,7 @@
 	    return function (dispatch) {
 	        // Add user to follower list of who they just started following
 	        _axios2.default.post(ROOT_URL + '/api/followlist/add/' + id, {}, { headers: { 'authorization': localStorage.getItem('token') }, withCredentials: true }).then(function (response) {
-	            console.log(response, "insert follower");
+	            //console.log(response, "insert follower");
 	            dispatch({
 	                type: _types.FETCH_FOLLOWERS_LIST,
 	                payload: response.data.followers
@@ -30968,7 +30974,7 @@
 	        var curID = id ? "/" + id : "";
 	        // Add user to follower list of who they just started following
 	        _axios2.default.get(ROOT_URL + '/api/followlist' + curID, { headers: { 'authorization': localStorage.getItem('token') }, withCredentials: true }).then(function (response) {
-	            console.log("fetch followers list", response);
+	            //console.log("fetch followers list", response);
 	            dispatch({
 	                type: _types.FETCH_FOLLOWERS_LIST,
 	                payload: response.data.followers
@@ -42918,6 +42924,1134 @@
 
 /***/ },
 /* 387 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	var _warning = __webpack_require__(388);
+
+	var _warning2 = _interopRequireDefault(_warning);
+
+	var _invariant = __webpack_require__(389);
+
+	var _invariant2 = _interopRequireDefault(_invariant);
+
+	var _ExecutionEnvironment = __webpack_require__(390);
+
+	var _DOMUtils = __webpack_require__(391);
+
+	var _HashProtocol = __webpack_require__(392);
+
+	var HashProtocol = _interopRequireWildcard(_HashProtocol);
+
+	var _createHistory = __webpack_require__(398);
+
+	var _createHistory2 = _interopRequireDefault(_createHistory);
+
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var DefaultQueryKey = '_k';
+
+	var createHashHistory = function createHashHistory() {
+	  var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+
+	  !_ExecutionEnvironment.canUseDOM ? process.env.NODE_ENV !== 'production' ? (0, _invariant2.default)(false, 'Hash history needs a DOM') : (0, _invariant2.default)(false) : void 0;
+
+	  var queryKey = options.queryKey;
+
+
+	  process.env.NODE_ENV !== 'production' ? (0, _warning2.default)(queryKey !== false, 'Using { queryKey: false } no longer works. Instead, just don\'t ' + 'use location state if you don\'t want a key in your URL query string') : void 0;
+
+	  if (typeof queryKey !== 'string') queryKey = DefaultQueryKey;
+
+	  var getUserConfirmation = HashProtocol.getUserConfirmation;
+
+
+	  var getCurrentLocation = function getCurrentLocation() {
+	    return HashProtocol.getCurrentLocation(queryKey);
+	  };
+
+	  var pushLocation = function pushLocation(location) {
+	    return HashProtocol.pushLocation(location, queryKey);
+	  };
+
+	  var replaceLocation = function replaceLocation(location) {
+	    return HashProtocol.replaceLocation(location, queryKey);
+	  };
+
+	  var history = (0, _createHistory2.default)(_extends({
+	    getUserConfirmation: getUserConfirmation }, options, {
+	    getCurrentLocation: getCurrentLocation,
+	    pushLocation: pushLocation,
+	    replaceLocation: replaceLocation,
+	    go: HashProtocol.go
+	  }));
+
+	  var listenerCount = 0,
+	      stopListener = void 0;
+
+	  var startListener = function startListener(listener, before) {
+	    if (++listenerCount === 1) stopListener = HashProtocol.startListener(history.transitionTo, queryKey);
+
+	    var unlisten = before ? history.listenBefore(listener) : history.listen(listener);
+
+	    return function () {
+	      unlisten();
+
+	      if (--listenerCount === 0) stopListener();
+	    };
+	  };
+
+	  var listenBefore = function listenBefore(listener) {
+	    return startListener(listener, true);
+	  };
+
+	  var listen = function listen(listener) {
+	    return startListener(listener, false);
+	  };
+
+	  var goIsSupportedWithoutReload = (0, _DOMUtils.supportsGoWithoutReloadUsingHash)();
+
+	  var go = function go(n) {
+	    process.env.NODE_ENV !== 'production' ? (0, _warning2.default)(goIsSupportedWithoutReload, 'Hash history go(n) causes a full page reload in this browser') : void 0;
+
+	    history.go(n);
+	  };
+
+	  var createHref = function createHref(path) {
+	    return '#' + history.createHref(path);
+	  };
+
+	  return _extends({}, history, {
+	    listenBefore: listenBefore,
+	    listen: listen,
+	    go: go,
+	    createHref: createHref
+	  });
+	};
+
+	exports.default = createHashHistory;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
+
+/***/ },
+/* 388 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {/**
+	 * Copyright 2014-2015, Facebook, Inc.
+	 * All rights reserved.
+	 *
+	 * This source code is licensed under the BSD-style license found in the
+	 * LICENSE file in the root directory of this source tree. An additional grant
+	 * of patent rights can be found in the PATENTS file in the same directory.
+	 */
+
+	'use strict';
+
+	/**
+	 * Similar to invariant but only logs a warning if the condition is not met.
+	 * This can be used to log issues in development environments in critical
+	 * paths. Removing the logging code for production environments will keep the
+	 * same logic and follow the same code paths.
+	 */
+
+	var warning = function() {};
+
+	if (process.env.NODE_ENV !== 'production') {
+	  warning = function(condition, format, args) {
+	    var len = arguments.length;
+	    args = new Array(len > 2 ? len - 2 : 0);
+	    for (var key = 2; key < len; key++) {
+	      args[key - 2] = arguments[key];
+	    }
+	    if (format === undefined) {
+	      throw new Error(
+	        '`warning(condition, format, ...args)` requires a warning ' +
+	        'message argument'
+	      );
+	    }
+
+	    if (format.length < 10 || (/^[s\W]*$/).test(format)) {
+	      throw new Error(
+	        'The warning format should be able to uniquely identify this ' +
+	        'warning. Please, use a more descriptive format than: ' + format
+	      );
+	    }
+
+	    if (!condition) {
+	      var argIndex = 0;
+	      var message = 'Warning: ' +
+	        format.replace(/%s/g, function() {
+	          return args[argIndex++];
+	        });
+	      if (typeof console !== 'undefined') {
+	        console.error(message);
+	      }
+	      try {
+	        // This error was thrown as a convenience so that you can use this stack
+	        // to find the callsite that caused this warning to fire.
+	        throw new Error(message);
+	      } catch(x) {}
+	    }
+	  };
+	}
+
+	module.exports = warning;
+
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
+
+/***/ },
+/* 389 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {/**
+	 * Copyright 2013-2015, Facebook, Inc.
+	 * All rights reserved.
+	 *
+	 * This source code is licensed under the BSD-style license found in the
+	 * LICENSE file in the root directory of this source tree. An additional grant
+	 * of patent rights can be found in the PATENTS file in the same directory.
+	 */
+
+	'use strict';
+
+	/**
+	 * Use invariant() to assert state which your program assumes to be true.
+	 *
+	 * Provide sprintf-style format (only %s is supported) and arguments
+	 * to provide information about what broke and what you were
+	 * expecting.
+	 *
+	 * The invariant message will be stripped in production, but the invariant
+	 * will remain to ensure logic does not differ in production.
+	 */
+
+	var invariant = function(condition, format, a, b, c, d, e, f) {
+	  if (process.env.NODE_ENV !== 'production') {
+	    if (format === undefined) {
+	      throw new Error('invariant requires an error message argument');
+	    }
+	  }
+
+	  if (!condition) {
+	    var error;
+	    if (format === undefined) {
+	      error = new Error(
+	        'Minified exception occurred; use the non-minified dev environment ' +
+	        'for the full error message and additional helpful warnings.'
+	      );
+	    } else {
+	      var args = [a, b, c, d, e, f];
+	      var argIndex = 0;
+	      error = new Error(
+	        format.replace(/%s/g, function() { return args[argIndex++]; })
+	      );
+	      error.name = 'Invariant Violation';
+	    }
+
+	    error.framesToPop = 1; // we don't care about invariant's own frame
+	    throw error;
+	  }
+	};
+
+	module.exports = invariant;
+
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
+
+/***/ },
+/* 390 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	var canUseDOM = exports.canUseDOM = !!(typeof window !== 'undefined' && window.document && window.document.createElement);
+
+/***/ },
+/* 391 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	var addEventListener = exports.addEventListener = function addEventListener(node, event, listener) {
+	  return node.addEventListener ? node.addEventListener(event, listener, false) : node.attachEvent('on' + event, listener);
+	};
+
+	var removeEventListener = exports.removeEventListener = function removeEventListener(node, event, listener) {
+	  return node.removeEventListener ? node.removeEventListener(event, listener, false) : node.detachEvent('on' + event, listener);
+	};
+
+	/**
+	 * Returns true if the HTML5 history API is supported. Taken from Modernizr.
+	 *
+	 * https://github.com/Modernizr/Modernizr/blob/master/LICENSE
+	 * https://github.com/Modernizr/Modernizr/blob/master/feature-detects/history.js
+	 * changed to avoid false negatives for Windows Phones: https://github.com/reactjs/react-router/issues/586
+	 */
+	var supportsHistory = exports.supportsHistory = function supportsHistory() {
+	  var ua = window.navigator.userAgent;
+
+	  if ((ua.indexOf('Android 2.') !== -1 || ua.indexOf('Android 4.0') !== -1) && ua.indexOf('Mobile Safari') !== -1 && ua.indexOf('Chrome') === -1 && ua.indexOf('Windows Phone') === -1) return false;
+
+	  return window.history && 'pushState' in window.history;
+	};
+
+	/**
+	 * Returns false if using go(n) with hash history causes a full page reload.
+	 */
+	var supportsGoWithoutReloadUsingHash = exports.supportsGoWithoutReloadUsingHash = function supportsGoWithoutReloadUsingHash() {
+	  return window.navigator.userAgent.indexOf('Firefox') === -1;
+	};
+
+/***/ },
+/* 392 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.replaceLocation = exports.pushLocation = exports.startListener = exports.getCurrentLocation = exports.go = exports.getUserConfirmation = undefined;
+
+	var _BrowserProtocol = __webpack_require__(393);
+
+	Object.defineProperty(exports, 'getUserConfirmation', {
+	  enumerable: true,
+	  get: function get() {
+	    return _BrowserProtocol.getUserConfirmation;
+	  }
+	});
+	Object.defineProperty(exports, 'go', {
+	  enumerable: true,
+	  get: function get() {
+	    return _BrowserProtocol.go;
+	  }
+	});
+
+	var _warning = __webpack_require__(388);
+
+	var _warning2 = _interopRequireDefault(_warning);
+
+	var _LocationUtils = __webpack_require__(394);
+
+	var _DOMUtils = __webpack_require__(391);
+
+	var _DOMStateStorage = __webpack_require__(397);
+
+	var _PathUtils = __webpack_require__(395);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var HashChangeEvent = 'hashchange';
+
+	var getHashPath = function getHashPath() {
+	  // We can't use window.location.hash here because it's not
+	  // consistent across browsers - Firefox will pre-decode it!
+	  var href = window.location.href;
+	  var index = href.indexOf('#');
+	  return index === -1 ? '' : href.substring(index + 1);
+	};
+
+	var pushHashPath = function pushHashPath(path) {
+	  return window.location.hash = path;
+	};
+
+	var replaceHashPath = function replaceHashPath(path) {
+	  var i = window.location.href.indexOf('#');
+
+	  window.location.replace(window.location.href.slice(0, i >= 0 ? i : 0) + '#' + path);
+	};
+
+	var ensureSlash = function ensureSlash() {
+	  var path = getHashPath();
+
+	  if ((0, _PathUtils.isAbsolutePath)(path)) return true;
+
+	  replaceHashPath('/' + path);
+
+	  return false;
+	};
+
+	var getCurrentLocation = exports.getCurrentLocation = function getCurrentLocation(queryKey) {
+	  var path = getHashPath();
+	  var key = (0, _PathUtils.getQueryStringValueFromPath)(path, queryKey);
+
+	  var state = void 0;
+	  if (key) {
+	    path = (0, _PathUtils.stripQueryStringValueFromPath)(path, queryKey);
+	    state = (0, _DOMStateStorage.readState)(key);
+	  }
+
+	  var init = (0, _PathUtils.parsePath)(path);
+	  init.state = state;
+
+	  return (0, _LocationUtils.createLocation)(init, undefined, key);
+	};
+
+	var prevLocation = void 0;
+
+	var startListener = exports.startListener = function startListener(listener, queryKey) {
+	  var handleHashChange = function handleHashChange() {
+	    if (!ensureSlash()) return; // Hash path must always begin with a /
+
+	    var currentLocation = getCurrentLocation(queryKey);
+
+	    if (prevLocation && currentLocation.key && prevLocation.key === currentLocation.key) return; // Ignore extraneous hashchange events
+
+	    prevLocation = currentLocation;
+
+	    listener(currentLocation);
+	  };
+
+	  ensureSlash();
+	  (0, _DOMUtils.addEventListener)(window, HashChangeEvent, handleHashChange);
+
+	  return function () {
+	    return (0, _DOMUtils.removeEventListener)(window, HashChangeEvent, handleHashChange);
+	  };
+	};
+
+	var updateLocation = function updateLocation(location, queryKey, updateHash) {
+	  var state = location.state;
+	  var key = location.key;
+
+	  var path = (0, _PathUtils.createPath)(location);
+
+	  if (state !== undefined) {
+	    path = (0, _PathUtils.addQueryStringValueToPath)(path, queryKey, key);
+	    (0, _DOMStateStorage.saveState)(key, state);
+	  }
+
+	  prevLocation = location;
+
+	  updateHash(path);
+	};
+
+	var pushLocation = exports.pushLocation = function pushLocation(location, queryKey) {
+	  return updateLocation(location, queryKey, function (path) {
+	    if (getHashPath() !== path) {
+	      pushHashPath(path);
+	    } else {
+	      process.env.NODE_ENV !== 'production' ? (0, _warning2.default)(false, 'You cannot PUSH the same path using hash history') : void 0;
+	    }
+	  });
+	};
+
+	var replaceLocation = exports.replaceLocation = function replaceLocation(location, queryKey) {
+	  return updateLocation(location, queryKey, function (path) {
+	    if (getHashPath() !== path) replaceHashPath(path);
+	  });
+	};
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
+
+/***/ },
+/* 393 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.go = exports.replaceLocation = exports.pushLocation = exports.startListener = exports.getUserConfirmation = exports.getCurrentLocation = undefined;
+
+	var _LocationUtils = __webpack_require__(394);
+
+	var _DOMUtils = __webpack_require__(391);
+
+	var _DOMStateStorage = __webpack_require__(397);
+
+	var _PathUtils = __webpack_require__(395);
+
+	/* eslint-disable no-alert */
+
+
+	var PopStateEvent = 'popstate';
+
+	var _createLocation = function _createLocation(historyState) {
+	  var key = historyState && historyState.key;
+
+	  return (0, _LocationUtils.createLocation)({
+	    pathname: window.location.pathname,
+	    search: window.location.search,
+	    hash: window.location.hash,
+	    state: key ? (0, _DOMStateStorage.readState)(key) : undefined
+	  }, undefined, key);
+	};
+
+	var getCurrentLocation = exports.getCurrentLocation = function getCurrentLocation() {
+	  var historyState = void 0;
+	  try {
+	    historyState = window.history.state || {};
+	  } catch (error) {
+	    // IE 11 sometimes throws when accessing window.history.state
+	    // See https://github.com/mjackson/history/pull/289
+	    historyState = {};
+	  }
+
+	  return _createLocation(historyState);
+	};
+
+	var getUserConfirmation = exports.getUserConfirmation = function getUserConfirmation(message, callback) {
+	  return callback(window.confirm(message));
+	};
+
+	var startListener = exports.startListener = function startListener(listener) {
+	  var handlePopState = function handlePopState(event) {
+	    if (event.state !== undefined) // Ignore extraneous popstate events in WebKit
+	      listener(_createLocation(event.state));
+	  };
+
+	  (0, _DOMUtils.addEventListener)(window, PopStateEvent, handlePopState);
+
+	  return function () {
+	    return (0, _DOMUtils.removeEventListener)(window, PopStateEvent, handlePopState);
+	  };
+	};
+
+	var updateLocation = function updateLocation(location, updateState) {
+	  var state = location.state;
+	  var key = location.key;
+
+
+	  if (state !== undefined) (0, _DOMStateStorage.saveState)(key, state);
+
+	  updateState({ key: key }, (0, _PathUtils.createPath)(location));
+	};
+
+	var pushLocation = exports.pushLocation = function pushLocation(location) {
+	  return updateLocation(location, function (state, path) {
+	    return window.history.pushState(state, null, path);
+	  });
+	};
+
+	var replaceLocation = exports.replaceLocation = function replaceLocation(location) {
+	  return updateLocation(location, function (state, path) {
+	    return window.history.replaceState(state, null, path);
+	  });
+	};
+
+	var go = exports.go = function go(n) {
+	  if (n) window.history.go(n);
+	};
+
+/***/ },
+/* 394 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.locationsAreEqual = exports.statesAreEqual = exports.createLocation = exports.createQuery = undefined;
+
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	var _invariant = __webpack_require__(389);
+
+	var _invariant2 = _interopRequireDefault(_invariant);
+
+	var _PathUtils = __webpack_require__(395);
+
+	var _Actions = __webpack_require__(396);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var createQuery = exports.createQuery = function createQuery(props) {
+	  return _extends(Object.create(null), props);
+	};
+
+	var createLocation = exports.createLocation = function createLocation() {
+	  var input = arguments.length <= 0 || arguments[0] === undefined ? '/' : arguments[0];
+	  var action = arguments.length <= 1 || arguments[1] === undefined ? _Actions.POP : arguments[1];
+	  var key = arguments.length <= 2 || arguments[2] === undefined ? null : arguments[2];
+
+	  var object = typeof input === 'string' ? (0, _PathUtils.parsePath)(input) : input;
+
+	  var pathname = object.pathname || '/';
+	  var search = object.search || '';
+	  var hash = object.hash || '';
+	  var state = object.state;
+
+	  return {
+	    pathname: pathname,
+	    search: search,
+	    hash: hash,
+	    state: state,
+	    action: action,
+	    key: key
+	  };
+	};
+
+	var isDate = function isDate(object) {
+	  return Object.prototype.toString.call(object) === '[object Date]';
+	};
+
+	var statesAreEqual = exports.statesAreEqual = function statesAreEqual(a, b) {
+	  if (a === b) return true;
+
+	  var typeofA = typeof a === 'undefined' ? 'undefined' : _typeof(a);
+	  var typeofB = typeof b === 'undefined' ? 'undefined' : _typeof(b);
+
+	  if (typeofA !== typeofB) return false;
+
+	  !(typeofA !== 'function') ? process.env.NODE_ENV !== 'production' ? (0, _invariant2.default)(false, 'You must not store functions in location state') : (0, _invariant2.default)(false) : void 0;
+
+	  // Not the same object, but same type.
+	  if (typeofA === 'object') {
+	    !!(isDate(a) && isDate(b)) ? process.env.NODE_ENV !== 'production' ? (0, _invariant2.default)(false, 'You must not store Date objects in location state') : (0, _invariant2.default)(false) : void 0;
+
+	    if (!Array.isArray(a)) return Object.keys(a).every(function (key) {
+	      return statesAreEqual(a[key], b[key]);
+	    });
+
+	    return Array.isArray(b) && a.length === b.length && a.every(function (item, index) {
+	      return statesAreEqual(item, b[index]);
+	    });
+	  }
+
+	  // All other serializable types (string, number, boolean)
+	  // should be strict equal.
+	  return false;
+	};
+
+	var locationsAreEqual = exports.locationsAreEqual = function locationsAreEqual(a, b) {
+	  return a.key === b.key &&
+	  // a.action === b.action && // Different action !== location change.
+	  a.pathname === b.pathname && a.search === b.search && a.hash === b.hash && statesAreEqual(a.state, b.state);
+	};
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
+
+/***/ },
+/* 395 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.createPath = exports.parsePath = exports.getQueryStringValueFromPath = exports.stripQueryStringValueFromPath = exports.addQueryStringValueToPath = exports.isAbsolutePath = undefined;
+
+	var _warning = __webpack_require__(388);
+
+	var _warning2 = _interopRequireDefault(_warning);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var isAbsolutePath = exports.isAbsolutePath = function isAbsolutePath(path) {
+	  return typeof path === 'string' && path.charAt(0) === '/';
+	};
+
+	var addQueryStringValueToPath = exports.addQueryStringValueToPath = function addQueryStringValueToPath(path, key, value) {
+	  var _parsePath = parsePath(path);
+
+	  var pathname = _parsePath.pathname;
+	  var search = _parsePath.search;
+	  var hash = _parsePath.hash;
+
+
+	  return createPath({
+	    pathname: pathname,
+	    search: search + (search.indexOf('?') === -1 ? '?' : '&') + key + '=' + value,
+	    hash: hash
+	  });
+	};
+
+	var stripQueryStringValueFromPath = exports.stripQueryStringValueFromPath = function stripQueryStringValueFromPath(path, key) {
+	  var _parsePath2 = parsePath(path);
+
+	  var pathname = _parsePath2.pathname;
+	  var search = _parsePath2.search;
+	  var hash = _parsePath2.hash;
+
+
+	  return createPath({
+	    pathname: pathname,
+	    search: search.replace(new RegExp('([?&])' + key + '=[a-zA-Z0-9]+(&?)'), function (match, prefix, suffix) {
+	      return prefix === '?' ? prefix : suffix;
+	    }),
+	    hash: hash
+	  });
+	};
+
+	var getQueryStringValueFromPath = exports.getQueryStringValueFromPath = function getQueryStringValueFromPath(path, key) {
+	  var _parsePath3 = parsePath(path);
+
+	  var search = _parsePath3.search;
+
+	  var match = search.match(new RegExp('[?&]' + key + '=([a-zA-Z0-9]+)'));
+	  return match && match[1];
+	};
+
+	var extractPath = function extractPath(string) {
+	  var match = string.match(/^(https?:)?\/\/[^\/]*/);
+	  return match == null ? string : string.substring(match[0].length);
+	};
+
+	var parsePath = exports.parsePath = function parsePath(path) {
+	  var pathname = extractPath(path);
+	  var search = '';
+	  var hash = '';
+
+	  process.env.NODE_ENV !== 'production' ? (0, _warning2.default)(path === pathname, 'A path must be pathname + search + hash only, not a full URL like "%s"', path) : void 0;
+
+	  var hashIndex = pathname.indexOf('#');
+	  if (hashIndex !== -1) {
+	    hash = pathname.substring(hashIndex);
+	    pathname = pathname.substring(0, hashIndex);
+	  }
+
+	  var searchIndex = pathname.indexOf('?');
+	  if (searchIndex !== -1) {
+	    search = pathname.substring(searchIndex);
+	    pathname = pathname.substring(0, searchIndex);
+	  }
+
+	  if (pathname === '') pathname = '/';
+
+	  return {
+	    pathname: pathname,
+	    search: search,
+	    hash: hash
+	  };
+	};
+
+	var createPath = exports.createPath = function createPath(location) {
+	  if (location == null || typeof location === 'string') return location;
+
+	  var basename = location.basename;
+	  var pathname = location.pathname;
+	  var search = location.search;
+	  var hash = location.hash;
+
+	  var path = (basename || '') + pathname;
+
+	  if (search && search !== '?') path += search;
+
+	  if (hash) path += hash;
+
+	  return path;
+	};
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
+
+/***/ },
+/* 396 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	/**
+	 * Indicates that navigation was caused by a call to history.push.
+	 */
+	var PUSH = exports.PUSH = 'PUSH';
+
+	/**
+	 * Indicates that navigation was caused by a call to history.replace.
+	 */
+	var REPLACE = exports.REPLACE = 'REPLACE';
+
+	/**
+	 * Indicates that navigation was caused by some other action such
+	 * as using a browser's back/forward buttons and/or manually manipulating
+	 * the URL in a browser's location bar. This is the default.
+	 *
+	 * See https://developer.mozilla.org/en-US/docs/Web/API/WindowEventHandlers/onpopstate
+	 * for more information.
+	 */
+	var POP = exports.POP = 'POP';
+
+/***/ },
+/* 397 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.readState = exports.saveState = undefined;
+
+	var _warning = __webpack_require__(388);
+
+	var _warning2 = _interopRequireDefault(_warning);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var QuotaExceededErrors = ['QuotaExceededError', 'QUOTA_EXCEEDED_ERR']; /* eslint-disable no-empty */
+
+
+	var SecurityError = 'SecurityError';
+	var KeyPrefix = '@@History/';
+
+	var createKey = function createKey(key) {
+	  return KeyPrefix + key;
+	};
+
+	var saveState = exports.saveState = function saveState(key, state) {
+	  if (!window.sessionStorage) {
+	    // Session storage is not available or hidden.
+	    // sessionStorage is undefined in Internet Explorer when served via file protocol.
+	    process.env.NODE_ENV !== 'production' ? (0, _warning2.default)(false, '[history] Unable to save state; sessionStorage is not available') : void 0;
+	    return;
+	  }
+
+	  try {
+	    if (state == null) {
+	      window.sessionStorage.removeItem(createKey(key));
+	    } else {
+	      window.sessionStorage.setItem(createKey(key), JSON.stringify(state));
+	    }
+	  } catch (error) {
+	    if (error.name === SecurityError) {
+	      // Blocking cookies in Chrome/Firefox/Safari throws SecurityError on any
+	      // attempt to access window.sessionStorage.
+	      process.env.NODE_ENV !== 'production' ? (0, _warning2.default)(false, '[history] Unable to save state; sessionStorage is not available due to security settings') : void 0;
+
+	      return;
+	    }
+
+	    if (QuotaExceededErrors.indexOf(error.name) >= 0 && window.sessionStorage.length === 0) {
+	      // Safari "private mode" throws QuotaExceededError.
+	      process.env.NODE_ENV !== 'production' ? (0, _warning2.default)(false, '[history] Unable to save state; sessionStorage is not available in Safari private mode') : void 0;
+
+	      return;
+	    }
+
+	    throw error;
+	  }
+	};
+
+	var readState = exports.readState = function readState(key) {
+	  var json = void 0;
+	  try {
+	    json = window.sessionStorage.getItem(createKey(key));
+	  } catch (error) {
+	    if (error.name === SecurityError) {
+	      // Blocking cookies in Chrome/Firefox/Safari throws SecurityError on any
+	      // attempt to access window.sessionStorage.
+	      process.env.NODE_ENV !== 'production' ? (0, _warning2.default)(false, '[history] Unable to read state; sessionStorage is not available due to security settings') : void 0;
+
+	      return undefined;
+	    }
+	  }
+
+	  if (json) {
+	    try {
+	      return JSON.parse(json);
+	    } catch (error) {
+	      // Ignore invalid JSON.
+	    }
+	  }
+
+	  return undefined;
+	};
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
+
+/***/ },
+/* 398 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _AsyncUtils = __webpack_require__(399);
+
+	var _PathUtils = __webpack_require__(395);
+
+	var _runTransitionHook = __webpack_require__(400);
+
+	var _runTransitionHook2 = _interopRequireDefault(_runTransitionHook);
+
+	var _Actions = __webpack_require__(396);
+
+	var _LocationUtils = __webpack_require__(394);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+	var createHistory = function createHistory() {
+	  var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+	  var getCurrentLocation = options.getCurrentLocation;
+	  var getUserConfirmation = options.getUserConfirmation;
+	  var pushLocation = options.pushLocation;
+	  var replaceLocation = options.replaceLocation;
+	  var go = options.go;
+	  var keyLength = options.keyLength;
+
+
+	  var currentLocation = void 0;
+	  var pendingLocation = void 0;
+	  var beforeListeners = [];
+	  var listeners = [];
+	  var allKeys = [];
+
+	  var getCurrentIndex = function getCurrentIndex() {
+	    if (pendingLocation && pendingLocation.action === _Actions.POP) return allKeys.indexOf(pendingLocation.key);
+
+	    if (currentLocation) return allKeys.indexOf(currentLocation.key);
+
+	    return -1;
+	  };
+
+	  var updateLocation = function updateLocation(nextLocation) {
+	    currentLocation = nextLocation;
+
+	    var currentIndex = getCurrentIndex();
+
+	    if (currentLocation.action === _Actions.PUSH) {
+	      allKeys = [].concat(_toConsumableArray(allKeys.slice(0, currentIndex + 1)), [currentLocation.key]);
+	    } else if (currentLocation.action === _Actions.REPLACE) {
+	      allKeys[currentIndex] = currentLocation.key;
+	    }
+
+	    listeners.forEach(function (listener) {
+	      return listener(currentLocation);
+	    });
+	  };
+
+	  var listenBefore = function listenBefore(listener) {
+	    beforeListeners.push(listener);
+
+	    return function () {
+	      return beforeListeners = beforeListeners.filter(function (item) {
+	        return item !== listener;
+	      });
+	    };
+	  };
+
+	  var listen = function listen(listener) {
+	    listeners.push(listener);
+
+	    return function () {
+	      return listeners = listeners.filter(function (item) {
+	        return item !== listener;
+	      });
+	    };
+	  };
+
+	  var confirmTransitionTo = function confirmTransitionTo(location, callback) {
+	    (0, _AsyncUtils.loopAsync)(beforeListeners.length, function (index, next, done) {
+	      (0, _runTransitionHook2.default)(beforeListeners[index], location, function (result) {
+	        return result != null ? done(result) : next();
+	      });
+	    }, function (message) {
+	      if (getUserConfirmation && typeof message === 'string') {
+	        getUserConfirmation(message, function (ok) {
+	          return callback(ok !== false);
+	        });
+	      } else {
+	        callback(message !== false);
+	      }
+	    });
+	  };
+
+	  var transitionTo = function transitionTo(nextLocation) {
+	    if (currentLocation && (0, _LocationUtils.locationsAreEqual)(currentLocation, nextLocation) || pendingLocation && (0, _LocationUtils.locationsAreEqual)(pendingLocation, nextLocation)) return; // Nothing to do
+
+	    pendingLocation = nextLocation;
+
+	    confirmTransitionTo(nextLocation, function (ok) {
+	      if (pendingLocation !== nextLocation) return; // Transition was interrupted during confirmation
+
+	      pendingLocation = null;
+
+	      if (ok) {
+	        // Treat PUSH to same path like REPLACE to be consistent with browsers
+	        if (nextLocation.action === _Actions.PUSH) {
+	          var prevPath = (0, _PathUtils.createPath)(currentLocation);
+	          var nextPath = (0, _PathUtils.createPath)(nextLocation);
+
+	          if (nextPath === prevPath && (0, _LocationUtils.statesAreEqual)(currentLocation.state, nextLocation.state)) nextLocation.action = _Actions.REPLACE;
+	        }
+
+	        if (nextLocation.action === _Actions.POP) {
+	          updateLocation(nextLocation);
+	        } else if (nextLocation.action === _Actions.PUSH) {
+	          if (pushLocation(nextLocation) !== false) updateLocation(nextLocation);
+	        } else if (nextLocation.action === _Actions.REPLACE) {
+	          if (replaceLocation(nextLocation) !== false) updateLocation(nextLocation);
+	        }
+	      } else if (currentLocation && nextLocation.action === _Actions.POP) {
+	        var prevIndex = allKeys.indexOf(currentLocation.key);
+	        var nextIndex = allKeys.indexOf(nextLocation.key);
+
+	        if (prevIndex !== -1 && nextIndex !== -1) go(prevIndex - nextIndex); // Restore the URL
+	      }
+	    });
+	  };
+
+	  var push = function push(input) {
+	    return transitionTo(createLocation(input, _Actions.PUSH));
+	  };
+
+	  var replace = function replace(input) {
+	    return transitionTo(createLocation(input, _Actions.REPLACE));
+	  };
+
+	  var goBack = function goBack() {
+	    return go(-1);
+	  };
+
+	  var goForward = function goForward() {
+	    return go(1);
+	  };
+
+	  var createKey = function createKey() {
+	    return Math.random().toString(36).substr(2, keyLength || 6);
+	  };
+
+	  var createHref = function createHref(location) {
+	    return (0, _PathUtils.createPath)(location);
+	  };
+
+	  var createLocation = function createLocation(location, action) {
+	    var key = arguments.length <= 2 || arguments[2] === undefined ? createKey() : arguments[2];
+	    return (0, _LocationUtils.createLocation)(location, action, key);
+	  };
+
+	  return {
+	    getCurrentLocation: getCurrentLocation,
+	    listenBefore: listenBefore,
+	    listen: listen,
+	    transitionTo: transitionTo,
+	    push: push,
+	    replace: replace,
+	    go: go,
+	    goBack: goBack,
+	    goForward: goForward,
+	    createKey: createKey,
+	    createPath: _PathUtils.createPath,
+	    createHref: createHref,
+	    createLocation: createLocation
+	  };
+	};
+
+	exports.default = createHistory;
+
+/***/ },
+/* 399 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+	var loopAsync = exports.loopAsync = function loopAsync(turns, work, callback) {
+	  var currentTurn = 0,
+	      isDone = false;
+	  var isSync = false,
+	      hasNext = false,
+	      doneArgs = void 0;
+
+	  var done = function done() {
+	    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+	      args[_key] = arguments[_key];
+	    }
+
+	    isDone = true;
+
+	    if (isSync) {
+	      // Iterate instead of recursing if possible.
+	      doneArgs = args;
+	      return;
+	    }
+
+	    callback.apply(undefined, args);
+	  };
+
+	  var next = function next() {
+	    if (isDone) return;
+
+	    hasNext = true;
+
+	    if (isSync) return; // Iterate instead of recursing if possible.
+
+	    isSync = true;
+
+	    while (!isDone && currentTurn < turns && hasNext) {
+	      hasNext = false;
+	      work(currentTurn++, next, done);
+	    }
+
+	    isSync = false;
+
+	    if (isDone) {
+	      // This means the loop finished synchronously.
+	      callback.apply(undefined, _toConsumableArray(doneArgs));
+	      return;
+	    }
+
+	    if (currentTurn >= turns && hasNext) {
+	      isDone = true;
+	      callback();
+	    }
+	  };
+
+	  next();
+	};
+
+/***/ },
+/* 400 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _warning = __webpack_require__(388);
+
+	var _warning2 = _interopRequireDefault(_warning);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var runTransitionHook = function runTransitionHook(hook, location, callback) {
+	  var result = hook(location, callback);
+
+	  if (hook.length < 2) {
+	    // Assume the hook runs synchronously and automatically
+	    // call the callback with the return value.
+	    callback(result);
+	  } else {
+	    process.env.NODE_ENV !== 'production' ? (0, _warning2.default)(result === undefined, 'You should not "return" in a transition hook with a callback argument; ' + 'call the callback instead') : void 0;
+	  }
+	};
+
+	exports.default = runTransitionHook;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
+
+/***/ },
+/* 401 */
 /***/ function(module, exports) {
 
 	"use strict";var _typeof2=typeof Symbol==="function"&&typeof Symbol.iterator==="symbol"?function(obj){return typeof obj;}:function(obj){return obj&&typeof Symbol==="function"&&obj.constructor===Symbol?"symbol":typeof obj;};/******/(function(modules){// webpackBootstrap
@@ -42932,9 +44066,9 @@
 	/******/__webpack_require__.m=modules;/******/// expose the module cache
 	/******/__webpack_require__.c=installedModules;/******/// __webpack_public_path__
 	/******/__webpack_require__.p="/";/******/// Load entry module and return exports
-	/******/return __webpack_require__(0);/******/})(/************************************************************************//******/[/* 0 *//***/function(module,exports,__webpack_require__){__webpack_require__(1);__webpack_require__(1);(function webpackMissingModule(){throw new Error("Cannot find module \"bundle.js\"");})();/***/},/* 1 *//***/function(module,exports,__webpack_require__){'use strict';var _react=__webpack_require__(2);var _react2=_interopRequireDefault(_react);var _reactDom=__webpack_require__(159);var _reactDom2=_interopRequireDefault(_reactDom);var _reactRedux=__webpack_require__(160);var _redux=__webpack_require__(167);var _reactRouter=__webpack_require__(186);var _reduxThunk=__webpack_require__(247);var _reduxThunk2=_interopRequireDefault(_reduxThunk);var _signup=__webpack_require__(248);var _signup2=_interopRequireDefault(_signup);var _signin=__webpack_require__(318);var _signin2=_interopRequireDefault(_signin);var _signout=__webpack_require__(319);var _signout2=_interopRequireDefault(_signout);var _app=__webpack_require__(320);var _app2=_interopRequireDefault(_app);var _feed=__webpack_require__(322);var _feed2=_interopRequireDefault(_feed);var _userProfile=__webpack_require__(325);var _userProfile2=_interopRequireDefault(_userProfile);var _helper=__webpack_require__(327);var _helper2=_interopRequireDefault(_helper);var _userList=__webpack_require__(330);var _userList2=_interopRequireDefault(_userList);var _welcome=__webpack_require__(332);var _welcome2=_interopRequireDefault(_welcome);var _require_auth=__webpack_require__(333);var _require_auth2=_interopRequireDefault(_require_auth);var _reducers=__webpack_require__(334);var _reducers2=_interopRequireDefault(_reducers);var _types=__webpack_require__(317);var _socket=__webpack_require__(337);var _socket2=_interopRequireDefault(_socket);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}var socket=(0,_socket2.default)('http://52.39.6.195');var createStoreWithMiddleware=(0,_redux.applyMiddleware)(_reduxThunk2.default)(_redux.createStore);var store=createStoreWithMiddleware(_reducers2.default);var token=localStorage.getItem('token');// Token means signed in
+	/******/return __webpack_require__(0);/******/})(/************************************************************************//******/[/* 0 *//***/function(module,exports,__webpack_require__){__webpack_require__(1);__webpack_require__(1);(function webpackMissingModule(){throw new Error("Cannot find module \"bundle.js\"");})();/***/},/* 1 *//***/function(module,exports,__webpack_require__){'use strict';var _react=__webpack_require__(2);var _react2=_interopRequireDefault(_react);var _reactDom=__webpack_require__(159);var _reactDom2=_interopRequireDefault(_reactDom);var _reactRedux=__webpack_require__(160);var _redux=__webpack_require__(167);var _reactRouter=__webpack_require__(186);var _reduxThunk=__webpack_require__(247);var _reduxThunk2=_interopRequireDefault(_reduxThunk);var _signup=__webpack_require__(248);var _signup2=_interopRequireDefault(_signup);var _signin=__webpack_require__(318);var _signin2=_interopRequireDefault(_signin);var _signout=__webpack_require__(319);var _signout2=_interopRequireDefault(_signout);var _app=__webpack_require__(320);var _app2=_interopRequireDefault(_app);var _feed=__webpack_require__(322);var _feed2=_interopRequireDefault(_feed);var _userProfile=__webpack_require__(325);var _userProfile2=_interopRequireDefault(_userProfile);var _helper=__webpack_require__(327);var _helper2=_interopRequireDefault(_helper);var _userList=__webpack_require__(330);var _userList2=_interopRequireDefault(_userList);var _welcome=__webpack_require__(332);var _welcome2=_interopRequireDefault(_welcome);var _require_auth=__webpack_require__(333);var _require_auth2=_interopRequireDefault(_require_auth);var _reducers=__webpack_require__(334);var _reducers2=_interopRequireDefault(_reducers);var _types=__webpack_require__(317);var _socket=__webpack_require__(337);var _socket2=_interopRequireDefault(_socket);var _createHashHistory=__webpack_require__(!function webpackMissingModule(){var e=new Error("Cannot find module \"history/lib/createHashHistory\"");e.code='MODULE_NOT_FOUND';throw e;}());var _createHashHistory2=_interopRequireDefault(_createHashHistory);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}var socket=(0,_socket2.default)('http://52.39.6.195');var appHistory=useRouterHistory(_createHashHistory2.default)({queryKey:false});var createStoreWithMiddleware=(0,_redux.applyMiddleware)(_reduxThunk2.default)(_redux.createStore);var store=createStoreWithMiddleware(_reducers2.default);var token=localStorage.getItem('token');// Token means signed in
 	if(token){// Need to update application state
-	store.dispatch({type:_types.AUTH_USER});}_reactDom2.default.render(_react2.default.createElement(_reactRedux.Provider,{store:store},_react2.default.createElement(_reactRouter.Router,{history:_reactRouter.browserHistory},_react2.default.createElement(_reactRouter.Route,{path:'/',socket:socket,component:_app2.default},_react2.default.createElement(_reactRouter.IndexRoute,{component:_welcome2.default}),_react2.default.createElement(_reactRouter.Route,{path:'signin',component:_signin2.default}),_react2.default.createElement(_reactRouter.Route,{path:'signout',component:_signout2.default}),_react2.default.createElement(_reactRouter.Route,{path:'signup',component:_signup2.default}),_react2.default.createElement(_reactRouter.Route,{path:'feed',socket:socket,component:(0,_require_auth2.default)(_feed2.default)}),_react2.default.createElement(_reactRouter.Route,{path:'myfeed',socket:socket,localFeed:true,component:(0,_require_auth2.default)(_feed2.default)}),_react2.default.createElement(_reactRouter.Route,{path:'profile',socket:socket,component:(0,_require_auth2.default)(_userProfile2.default)}),_react2.default.createElement(_reactRouter.Route,{path:'user/edit',component:(0,_require_auth2.default)(_helper2.default)}),_react2.default.createElement(_reactRouter.Route,{path:'user/:id',component:(0,_require_auth2.default)(_userProfile2.default)}),_react2.default.createElement(_reactRouter.Route,{path:'users',socket:socket,component:(0,_require_auth2.default)(_userList2.default)})))),document.querySelector('.mainContent'));/***/},/* 2 *//***/function(module,exports,__webpack_require__){'use strict';module.exports=__webpack_require__(3);/***/},/* 3 *//***/function(module,exports,__webpack_require__){/**
+	store.dispatch({type:_types.AUTH_USER});}_reactDom2.default.render(_react2.default.createElement(_reactRedux.Provider,{store:store},_react2.default.createElement(_reactRouter.Router,{history:appHistory},_react2.default.createElement(_reactRouter.Route,{path:'/',socket:socket,component:_app2.default},_react2.default.createElement(_reactRouter.IndexRoute,{component:_welcome2.default}),_react2.default.createElement(_reactRouter.Route,{path:'signin',component:_signin2.default}),_react2.default.createElement(_reactRouter.Route,{path:'signout',component:_signout2.default}),_react2.default.createElement(_reactRouter.Route,{path:'signup',component:_signup2.default}),_react2.default.createElement(_reactRouter.Route,{path:'feed',socket:socket,component:(0,_require_auth2.default)(_feed2.default)}),_react2.default.createElement(_reactRouter.Route,{path:'myfeed',socket:socket,localFeed:true,component:(0,_require_auth2.default)(_feed2.default)}),_react2.default.createElement(_reactRouter.Route,{path:'profile',socket:socket,component:(0,_require_auth2.default)(_userProfile2.default)}),_react2.default.createElement(_reactRouter.Route,{path:'user/edit',component:(0,_require_auth2.default)(_helper2.default)}),_react2.default.createElement(_reactRouter.Route,{path:'user/:id',component:(0,_require_auth2.default)(_userProfile2.default)}),_react2.default.createElement(_reactRouter.Route,{path:'users',socket:socket,component:(0,_require_auth2.default)(_userList2.default)})))),document.querySelector('.mainContent'));/***/},/* 2 *//***/function(module,exports,__webpack_require__){'use strict';module.exports=__webpack_require__(3);/***/},/* 3 *//***/function(module,exports,__webpack_require__){/**
 		 * Copyright 2013-2015, Facebook, Inc.
 		 * All rights reserved.
 		 *
@@ -49760,34 +50894,48 @@
 	dispatch({type:_types.AUTH_USER});// Save JWT token
 	localStorage.setItem('token',response.data.token);// Redirect to main user page       
 	_reactRouter.browserHistory.push('/myfeed');}).catch(function(error){// Show errors
-	dispatch(authError(error));});};}function updateUser(_ref3){var name=_ref3.name;var email=_ref3.email;var description=_ref3.description;return function(dispatch){_axios2.default.post(ROOT_URL+'/api/user',{name:name,email:email,description:description},{headers:{authorization:localStorage.getItem('token')},withCredentials:true}).then(function(response){console.log(response,"updated user");// Update state to indicate user is authenticated
+	dispatch(authError(error));});};}function updateUser(_ref3){var name=_ref3.name;var email=_ref3.email;var description=_ref3.description;return function(dispatch){_axios2.default.post(ROOT_URL+'/api/user',{name:name,email:email,description:description},{headers:{authorization:localStorage.getItem('token')},withCredentials:true}).then(function(response){//console.log(response, "updated user");
+	// Update state to indicate user is authenticated
 	dispatch({type:_types.UPDATE_USER});}).catch(function(error){console.log(error);// Show errors
 	dispatch(authError(error));});};}function authError(error){return{type:_types.AUTH_ERROR,payload:error};}function fetchMessage(){return function(dispatch){_axios2.default.get(ROOT_URL,{headers:{authorization:localStorage.getItem('token')}},{withCredentials:true}).then(function(response){dispatch({type:_types.FETCH_MESSAGE,payload:response.data.message});}).catch(function(error){console.log(error);});};}// Global feed
-	function fetchFeed(){return function(dispatch){_axios2.default.get(ROOT_URL+'/api/feed',{headers:{'authorization':localStorage.getItem('token')}},{withCredentials:true}).then(function(response){dispatch({type:_types.FETCH_FEED,payload:response.data});}).catch(function(error){console.log(error);});};}function fetchLocalFeed(){return function(dispatch){_axios2.default.get(ROOT_URL+'/api/myfeed',{headers:{'authorization':localStorage.getItem('token')}},{withCredentials:true}).then(function(response){dispatch({type:_types.FETCH_FEED,payload:response.data});}).catch(function(error){console.log(error);});};}function uploadFeed(image){return function(dispatch){_axios2.default.post(ROOT_URL+'/api/feed',image,{headers:{'authorization':localStorage.getItem('token')}}).then(function(response){}).catch(function(error){console.log(error);});};}function uploadProfilePic(image){return function(dispatch){_axios2.default.post(ROOT_URL+'/api/profilepic',image,{headers:{'authorization':localStorage.getItem('token')}}).then(function(response){console.log(response,"uploading profile pic");// dispatch({
+	function fetchFeed(){return function(dispatch){_axios2.default.get(ROOT_URL+'/api/feed',{headers:{'authorization':localStorage.getItem('token')}},{withCredentials:true}).then(function(response){dispatch({type:_types.FETCH_FEED,payload:response.data});}).catch(function(error){console.log(error);});};}function fetchLocalFeed(){return function(dispatch){_axios2.default.get(ROOT_URL+'/api/myfeed',{headers:{'authorization':localStorage.getItem('token')}},{withCredentials:true}).then(function(response){dispatch({type:_types.FETCH_FEED,payload:response.data});}).catch(function(error){console.log(error);});};}function uploadFeed(image){return function(dispatch){_axios2.default.post(ROOT_URL+'/api/feed',image,{headers:{'authorization':localStorage.getItem('token')}}).then(function(response){}).catch(function(error){console.log(error);});};}function uploadProfilePic(image){return function(dispatch){_axios2.default.post(ROOT_URL+'/api/profilepic',image,{headers:{'authorization':localStorage.getItem('token')}}).then(function(response){//console.log(response, "uploading profile pic");
+	// dispatch({
 	//     type: FETCH_CURRENT_USER,
 	//     payload: response.data.user
 	// });   
-	dispatch({type:_types.UPDATE_USER_PROFILE_PIC});}).catch(function(error){console.log(error);});};}function addLike(id){return function(dispatch){_axios2.default.post(ROOT_URL+'/api/likes/'+id,{},{headers:{'authorization':localStorage.getItem('token')}}).then(function(response){console.log("action likes "+response.data.likes);dispatch({type:_types.FETCH_LIKES,payload:response.data.likes});}).catch(function(error){console.log(error);});};}function removeLike(id){return function(dispatch){_axios2.default.post(ROOT_URL+'/api/unlikes/'+id,{},{headers:{'authorization':localStorage.getItem('token')}}).then(function(response){console.log("action unlikes "+response.data.likes);dispatch({type:_types.FETCH_LIKES,payload:response.data.likes});}).catch(function(error){console.log(error);});};}function addComment(id,comment){return function(dispatch){_axios2.default.post(ROOT_URL+'/api/comments/'+id,{comment:comment},{headers:{'authorization':localStorage.getItem('token')},withCredentials:true}).then(function(response){console.log("action comment "+response.data);}).catch(function(error){console.log(error);});};}function follow(id){// Send request to add userid to current user's follow list
-	return function(dispatch){_axios2.default.post(ROOT_URL+'/api/follow/'+id,{},{headers:{'authorization':localStorage.getItem('token')}},{withCredentials:true}).then(function(response){console.log(response.data.following,"Following",id);dispatch({type:_types.FETCH_FOLLOWERS,payload:response.data.following});}).catch(function(error){console.log(error);});};}function unfollow(id){// Send request to remove userid from current user's follow list
-	return function(dispatch){_axios2.default.post(ROOT_URL+'/api/unfollow/'+id,{},{headers:{'authorization':localStorage.getItem('token')}},{withCredentials:true}).then(function(response){dispatch({type:_types.FETCH_FOLLOWERS,payload:response.data.following});}).catch(function(error){console.log(error);});};}function fetchFollowing(){return function(dispatch){_axios2.default.get(ROOT_URL+'/api/following',{headers:{'authorization':localStorage.getItem('token')}},{withCredentials:true}).then(function(response){console.log("dispatching follows",response);dispatch({type:_types.FETCH_FOLLOWERS,payload:response.data.following});}).catch(function(error){console.log(error);});};}function fetchUser(id){// Retrieve content of the user with given id
-	return function(dispatch){var curID=id?"/"+id:"";var type=id?_types.FETCH_USER:_types.FETCH_CURRENT_USER;_axios2.default.get(ROOT_URL+'/api/user'+curID,{headers:{'authorization':localStorage.getItem('token')}},{withCredentials:true}).then(function(response){console.log("dispatching retrieve user",response);dispatch({type:type,payload:response.data.user});}).catch(function(error){console.log(error);});};}function fetchUsers(){// Retrieve all users
-	return function(dispatch){_axios2.default.get(ROOT_URL+'/api/users',{headers:{'authorization':localStorage.getItem('token')}},{withCredentials:true}).then(function(response){console.log("dispatching follows",response);dispatch({type:_types.FETCH_USERS,payload:response.data.users});}).catch(function(error){console.log(error);});};}function clearUser(){return function(dispatch){dispatch({type:_types.FETCH_USER,payload:false});dispatch({type:_types.FETCH_CURRENT_USER,payload:false});dispatch({type:_types.FETCH_POSTS,payload:false});};}function fetchUserPosts(id){// Retrieve user id of the current user
+	dispatch({type:_types.UPDATE_USER_PROFILE_PIC});}).catch(function(error){console.log(error);});};}function addLike(id){return function(dispatch){_axios2.default.post(ROOT_URL+'/api/likes/'+id,{},{headers:{'authorization':localStorage.getItem('token')}}).then(function(response){//console.log("action likes " + response.data.likes);
+	dispatch({type:_types.FETCH_LIKES,payload:response.data.likes});}).catch(function(error){console.log(error);});};}function removeLike(id){return function(dispatch){_axios2.default.post(ROOT_URL+'/api/unlikes/'+id,{},{headers:{'authorization':localStorage.getItem('token')}}).then(function(response){//console.log("action unlikes " + response.data.likes);
+	dispatch({type:_types.FETCH_LIKES,payload:response.data.likes});}).catch(function(error){console.log(error);});};}function addComment(id,comment){return function(dispatch){_axios2.default.post(ROOT_URL+'/api/comments/'+id,{comment:comment},{headers:{'authorization':localStorage.getItem('token')},withCredentials:true}).then(function(response){console.log("action comment "+response.data);}).catch(function(error){console.log(error);});};}function follow(id){// Send request to add userid to current user's follow list
+	return function(dispatch){_axios2.default.post(ROOT_URL+'/api/follow/'+id,{},{headers:{'authorization':localStorage.getItem('token')}},{withCredentials:true}).then(function(response){//console.log(response.data.following, "Following", id);
+	dispatch({type:_types.FETCH_FOLLOWERS,payload:response.data.following});}).catch(function(error){console.log(error);});};}function unfollow(id){// Send request to remove userid from current user's follow list
+	return function(dispatch){_axios2.default.post(ROOT_URL+'/api/unfollow/'+id,{},{headers:{'authorization':localStorage.getItem('token')}},{withCredentials:true}).then(function(response){dispatch({type:_types.FETCH_FOLLOWERS,payload:response.data.following});}).catch(function(error){console.log(error);});};}function fetchFollowing(){return function(dispatch){_axios2.default.get(ROOT_URL+'/api/following',{headers:{'authorization':localStorage.getItem('token')}},{withCredentials:true}).then(function(response){//console.log("dispatching follows", response);
+	dispatch({type:_types.FETCH_FOLLOWERS,payload:response.data.following});}).catch(function(error){console.log(error);});};}function fetchUser(id){// Retrieve content of the user with given id
+	return function(dispatch){var curID=id?"/"+id:"";var type=id?_types.FETCH_USER:_types.FETCH_CURRENT_USER;_axios2.default.get(ROOT_URL+'/api/user'+curID,{headers:{'authorization':localStorage.getItem('token')}},{withCredentials:true}).then(function(response){//console.log("dispatching retrieve user", response);
+	dispatch({type:type,payload:response.data.user});}).catch(function(error){console.log(error);});};}function fetchUsers(){// Retrieve all users
+	return function(dispatch){_axios2.default.get(ROOT_URL+'/api/users',{headers:{'authorization':localStorage.getItem('token')}},{withCredentials:true}).then(function(response){//console.log("dispatching follows", response);
+	dispatch({type:_types.FETCH_USERS,payload:response.data.users});}).catch(function(error){console.log(error);});};}function clearUser(){return function(dispatch){dispatch({type:_types.FETCH_USER,payload:false});dispatch({type:_types.FETCH_CURRENT_USER,payload:false});dispatch({type:_types.FETCH_POSTS,payload:false});};}function fetchUserPosts(id){// Retrieve user id of the current user
 	return function(dispatch){var curID=id?"/"+id:"";_axios2.default.get(ROOT_URL+'/api/posts'+curID,{headers:{'authorization':localStorage.getItem('token')}},{withCredentials:true}).then(function(response){dispatch({type:_types.FETCH_POSTS,payload:response.data.posts});}).catch(function(error){console.log(error);});};}function search(query){// Retrieve all users
-	return function(dispatch){_axios2.default.post(ROOT_URL+'/api/search',{query:query},{headers:{'authorization':localStorage.getItem('token')}},{withCredentials:true}).then(function(response){console.log("dispatching follows",response);dispatch({type:_types.SEARCH_RESULTS,payload:response.data.users});}).catch(function(error){console.log(error);});};}function notify(id,content){return function(dispatch){_axios2.default.post(ROOT_URL+'/api/notify/notification/'+id,content,{headers:{'authorization':localStorage.getItem('token')}},{withCredentials:true}).then(function(response){console.log("notify",response);}).catch(function(error){console.log(error);});};}function fetchNotifications(){// Retrieve notifications
-	return function(dispatch){_axios2.default.get(ROOT_URL+'/api/notify',{headers:{'authorization':localStorage.getItem('token')}},{withCredentials:true}).then(function(response){console.log("dispatching fetch notifications",response);dispatch({type:_types.FETCH_NOTIFICATIONS,payload:response.data.notifications});}).catch(function(error){console.log(error);});};}function seenNotifications(){// Retrieve notifications
-	return function(dispatch){_axios2.default.get(ROOT_URL+'/api/notify/seen',{headers:{'authorization':localStorage.getItem('token')}},{withCredentials:true}).then(function(response){console.log("dispatching seen notifications",response);// dispatch({
+	return function(dispatch){_axios2.default.post(ROOT_URL+'/api/search',{query:query},{headers:{'authorization':localStorage.getItem('token')}},{withCredentials:true}).then(function(response){//console.log("dispatching follows", response);
+	dispatch({type:_types.SEARCH_RESULTS,payload:response.data.users});}).catch(function(error){console.log(error);});};}function notify(id,content){return function(dispatch){_axios2.default.post(ROOT_URL+'/api/notify/notification/'+id,content,{headers:{'authorization':localStorage.getItem('token')}},{withCredentials:true}).then(function(response){//console.log("notify", response);
+	}).catch(function(error){console.log(error);});};}function fetchNotifications(){// Retrieve notifications
+	return function(dispatch){_axios2.default.get(ROOT_URL+'/api/notify',{headers:{'authorization':localStorage.getItem('token')}},{withCredentials:true}).then(function(response){//console.log("dispatching fetch notifications", response);
+	dispatch({type:_types.FETCH_NOTIFICATIONS,payload:response.data.notifications});}).catch(function(error){console.log(error);});};}function seenNotifications(){// Retrieve notifications
+	return function(dispatch){_axios2.default.get(ROOT_URL+'/api/notify/seen',{headers:{'authorization':localStorage.getItem('token')}},{withCredentials:true}).then(function(response){//console.log("dispatching seen notifications", response);
+	// dispatch({
 	//     type: FETCH_NOTIFICATIONS,
 	//     payload: response.data.notifications
-	// })  
+	// })   
 	}).catch(function(error){console.log(error);});};}function changePassword(_ref4){var oldPassword=_ref4.oldPassword;var password=_ref4.password;return function(dispatch){// Submit old password/new password to server
 	_axios2.default.post(ROOT_URL+'/api/user/password',{oldPassword:oldPassword,password:password},{headers:{'authorization':localStorage.getItem('token')},withCredentials:true}).then(function(response){// Update state to indicate user is updated
 	dispatch({type:_types.UPDATE_PASS});}).catch(function(){// Show errors
 	dispatch(authError('Failed to change your password. Perhaps the password you entered does not match?'));});};}function insertFollowerList(id){return function(dispatch){// Add user to follower list of who they just started following
-	_axios2.default.post(ROOT_URL+'/api/followlist/add/'+id,{},{headers:{'authorization':localStorage.getItem('token')},withCredentials:true}).then(function(response){console.log(response,"insert follower");dispatch({type:_types.FETCH_FOLLOWERS_LIST,payload:response.data.followers});}).catch(function(){// Show errors
+	_axios2.default.post(ROOT_URL+'/api/followlist/add/'+id,{},{headers:{'authorization':localStorage.getItem('token')},withCredentials:true}).then(function(response){//console.log(response, "insert follower");
+	dispatch({type:_types.FETCH_FOLLOWERS_LIST,payload:response.data.followers});}).catch(function(){// Show errors
 	console.log(error);});};}function removeFollowerList(id){return function(dispatch){// Add user to follower list of who they just started following
 	_axios2.default.post(ROOT_URL+'/api/followlist/remove/'+id,{},{headers:{'authorization':localStorage.getItem('token')},withCredentials:true}).then(function(response){dispatch({type:_types.FETCH_FOLLOWERS_LIST,payload:response.data.followers});}).catch(function(){// Show errors
 	console.log(error);});};}function fetchFollowerList(id){return function(dispatch){var curID=id?"/"+id:"";// Add user to follower list of who they just started following
-	_axios2.default.get(ROOT_URL+'/api/followlist'+curID,{headers:{'authorization':localStorage.getItem('token')},withCredentials:true}).then(function(response){console.log("fetch followers list",response);dispatch({type:_types.FETCH_FOLLOWERS_LIST,payload:response.data.followers});}).catch(function(){dispatch({type:_types.FETCH_FOLLOWERS_LIST,payload:0});// Show errors
+	_axios2.default.get(ROOT_URL+'/api/followlist'+curID,{headers:{'authorization':localStorage.getItem('token')},withCredentials:true}).then(function(response){//console.log("fetch followers list", response);
+	dispatch({type:_types.FETCH_FOLLOWERS_LIST,payload:response.data.followers});}).catch(function(){dispatch({type:_types.FETCH_FOLLOWERS_LIST,payload:0});// Show errors
 	console.log(error);});};}// Single route requests used for multiple concurrent requests in axios (NOT USED)
 	//=======================================================================
 	function fetchFeedConcur(){return _axios2.default.get(ROOT_URL+'/api/feed',{headers:{authorization:localStorage.getItem('token')}});}function uploadFeedConcur(image){return _axios2.default.post(ROOT_URL+'/api/feed',image);}//========================================================================
