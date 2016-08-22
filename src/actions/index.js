@@ -37,7 +37,7 @@ export function signinUser({ email, password }, routerContext) {
     }
 }
 
-export function signinUserFB(token) {
+export function signinUserFB(token, routerContext) {
     return function(dispatch) {
     // Submit email/password to server
     axios.get(`${ROOT_URL}/api/signin/auth/facebook`, { headers: {access_token: token}, withCredentials: true })
@@ -50,6 +50,7 @@ export function signinUserFB(token) {
             dispatch({ type: AUTH_USER });
             // Redirect to main user page        
             history.push('/#/myfeed'); 
+            routerContext.push("/myfeed"); 
         })
         .catch(() => {
             // Show errors
