@@ -241,7 +241,7 @@ header {
 
 
 .red {
-    color: red;
+    color: indianred;
 }
 
 .black {
@@ -305,3 +305,7 @@ header {
 }
 
 /* =============================================== */
+
+.special-link, .special-link:visited, .special-link:active {
+  color: inherit;
+}
