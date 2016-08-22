@@ -13,7 +13,7 @@ class UserList extends Component {
     }
     
     generateUserCards(){
-        console.log(this.props.currentUser, this.props.users);
+        //console.log(this.props.currentUser, this.props.users);
         if(this.props.users && this.props.currentUser){
             var items = this.props.users.filter(function(user){
                 return this.props.currentUser._id !== user._id;
