@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import * as actions from '../actions';
 import FollowButton from './followButton';
 import Card from './card';
+import io from 'socket.io-client';
+
 var Link = require('react-router').Link;
 
 class UserProfile extends Component {
@@ -21,7 +23,13 @@ class UserProfile extends Component {
     }
     
     generatePosts() {
-        var socket = this.props.route.socket;
+        var socket;
+        if(this.props.route.socket) {
+            socket = this.props.route.socket;
+        } else {
+            socket = io(`http://52.39.6.195`);
+        }
+         
         if(this.props.userPosts) {
             var posts = this.props.userPosts.map(function(image) {
                 var imgLink = "https://s3-us-west-2.amazonaws.com/photogriddemo/" + image.filename; 
