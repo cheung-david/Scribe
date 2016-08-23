@@ -58,9 +58,9 @@ class Header extends Component {
                         var urlEnd = `#/user/${user._id}`;
                         // add result to category
                         response.results[user._id].results.push({
-                            title       : `<a onclick="window.location.replace('${urlEnd}')">${user.fullName}</a>`,
-                            description : `<a target="_blank" href="${url}">${user.description || user.fullName}</a>`,
-                            //url: urlEnd
+                            title       : user.fullName, //`<a onclick="window.location.replace('${urlEnd}')">${user.fullName}</a>`,
+                            description : user.description || user.fullName, //`<a target="_blank" href="${url}">${user.description || user.fullName}</a>`,
+                            url: url
                         });
                     });
                     return response;

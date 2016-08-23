@@ -14234,7 +14234,7 @@ $.fn.search.settings = {
             // each item inside category
             $.each(category.results, function(index, result) {
               if(result[fields.url]) {
-                html  += '<a class="result" href="' + result[fields.url] + '">';
+                html  += '<a class="result" target="_blank" href="' + result[fields.url] + '">';
               }
               else {
                 html  += '<a class="result">';
