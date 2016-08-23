@@ -58,20 +58,15 @@ class Header extends Component {
                         var urlEnd = `#/user/${user._id}`;
                         // add result to category
                         response.results[user._id].results.push({
-                            title       : `<Link to='user/${user._id}'>${user.fullName}</Link>`,
-                            description : `<Link to='user/${user._id}'}>${user.description || user.fullName}</Link>`,
-                            url: urlEnd
+                            title       : `<a onclick="window.location.replace('${urlEnd}')">${user.fullName}</a>`,
+                            description : `<a target="_blank" href="${url}">${user.description || user.fullName}</a>`,
+                            //url: urlEnd
                         });
                     });
                     return response;
                 },
                 url: '//52.39.6.195/api/altsearch?q={query}',
             }
-        });
-        $('.result').each(function() {
-        var href = $(this).attr('href');
-        $(this).attr('onclick', "window.location.replace('" + href + "')")
-                .removeAttr('href');
         });
         
           
@@ -167,11 +162,6 @@ class Header extends Component {
     }
     
     renderHeader() {
-        $('.result').each(function() {
-        var href = $(this).attr('href');
-        $(this).attr('onclick', "window.location.replace('" + href + "')")
-                .removeAttr('href');
-        });
         var socket = this.props.socket;
         if(this.props.currentUser){
            //console.log("current user");
