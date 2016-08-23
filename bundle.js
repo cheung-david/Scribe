@@ -35050,19 +35050,15 @@
 	                            var urlEnd = '#/user/' + user._id;
 	                            // add result to category
 	                            response.results[user._id].results.push({
-	                                title: '<Link to=\'user/' + user._id + '\'>' + user.fullName + '</Link>',
-	                                description: '<Link to=\'user/' + user._id + '\'}>' + (user.description || user.fullName) + '</Link>',
-	                                url: urlEnd
+	                                title: '<a onclick="window.location.replace(\'' + urlEnd + '\')">' + user.fullName + '</a>',
+	                                description: '<a target="_blank" href="' + url + '">' + (user.description || user.fullName) + '</a>'
 	                            });
 	                        });
+	                        //url: urlEnd
 	                        return response;
 	                    },
 	                    url: '//52.39.6.195/api/altsearch?q={query}'
 	                }
-	            });
-	            $('.result').each(function () {
-	                var href = $(this).attr('href');
-	                $(this).attr('onclick', "window.location.replace('" + href + "')").removeAttr('href');
 	            });
 
 	            // Preserve 'this' reference
@@ -35201,10 +35197,6 @@
 	    }, {
 	        key: 'renderHeader',
 	        value: function renderHeader() {
-	            $('.result').each(function () {
-	                var href = $(this).attr('href');
-	                $(this).attr('onclick', "window.location.replace('" + href + "')").removeAttr('href');
-	            });
 	            var socket = this.props.socket;
 	            if (this.props.currentUser) {
 	                //console.log("current user");
@@ -52582,7 +52574,8 @@
 	$('.ui.search').search({type:'category',minCharacters:2,searchDelay:500,apiSettings:{onResponse:function onResponse(searchResults){var response={results:{}};// translate GitHub API response to work with search
 	$.each(searchResults.users,function(index,user){var profilePic=user.profilePic||'../../style/img/unknown_user.png',maxResults=8;if(index>=maxResults){return false;}var image='<img class="ui avatar image" src='+profilePic+' />';// create new language category
 	if(response.results[user._id]===undefined){response.results[user._id]={name:image,results:[]};}var href=history.createHref('/#/user/'+user._id);var link='<Link to={user/'+user._id+'}></Link>';var url='http://scriber.me/#/user/'+user._id;var urlEnd='#/user/'+user._id;// add result to category
-	response.results[user._id].results.push({title:'<Link to=\'user/'+user._id+'\'>'+user.fullName+'</Link>',description:'<Link to=\'user/'+user._id+'\'}>'+(user.description||user.fullName)+'</Link>',url:urlEnd});});return response;},url:'//52.39.6.195/api/altsearch?q={query}'}});$('.result').each(function(){var href=$(this).attr('href');$(this).attr('onclick',"window.location.replace('"+href+"')").removeAttr('href');});// Preserve 'this' reference
+	response.results[user._id].results.push({title:'<a onclick="window.location.replace(\''+urlEnd+'\')">'+user.fullName+'</a>',description:'<a target="_blank" href="'+url+'">'+(user.description||user.fullName)+'</a>'});});//url: urlEnd
+	return response;},url:'//52.39.6.195/api/altsearch?q={query}'}});// Preserve 'this' reference
 	var self=this;var socket=this.props.socket;if(this.props.currentUser){//console.log("current user");
 	socket.emit('username',this.props.currentUser._id);}// On notification event emission...
 	socket.on('notification',function(data){//console.log("notification", data);
@@ -52591,7 +52584,7 @@
 	},{key:'searchResults',value:function searchResults(){if(this.props.searchResults&&this.props.searchResults.users){var results=this.props.searchResults.users.map(function(result){return _react2.default.createElement('li',null,result.email);});return results;}else{return _react2.default.createElement('li',null,'"test"');}}},{key:'notification',value:function notification(){//console.log(this.props.notifications, "fetched notifications");
 	//var length = this.state.notification.length;
 	if(this.props.notifications){var length=this.props.notifications.filter(function(item){return item.seen===false;}).length;if(length){return _react2.default.createElement('div',{key:1337,className:'floating ui red label'},length);}else{return"";}}}},{key:'notificationList',value:function notificationList(){if(this.props.notifications&&this.props.notifications.length>0){var notifications=this.props.notifications.map(function(item){return _react2.default.createElement('div',{key:item._id,className:'event'},_react2.default.createElement('div',{className:'label'},_react2.default.createElement('img',{src:item.profilePic||"../../style/img/unknown_user.png"})),_react2.default.createElement('div',{className:'content'},_react2.default.createElement('div',{className:'summary'},_react2.default.createElement('a',{className:'user'},item.from),'   has ',item.action,' your post',_react2.default.createElement('div',{className:'date'},timeSince(item.date))),_react2.default.createElement('div',{className:''},item.content||"")));});return _react2.default.createElement('div',{className:'dropdown-menu'},_react2.default.createElement('div',{className:'ui feed','aria-labelledby':'notifications'},notifications));}else{return _react2.default.createElement('div',{className:'dropdown-menu ui feed','aria-labelledby':'notifications'},_react2.default.createElement('div',{className:'event'},'   There are no new notifications.'));}}},{key:'viewed',value:function viewed(){this.props.seenNotifications();//this.props.fetchNotifications();
-	}},{key:'renderHeader',value:function renderHeader(){$('.result').each(function(){var href=$(this).attr('href');$(this).attr('onclick',"window.location.replace('"+href+"')").removeAttr('href');});var socket=this.props.socket;if(this.props.currentUser){//console.log("current user");
+	}},{key:'renderHeader',value:function renderHeader(){var socket=this.props.socket;if(this.props.currentUser){//console.log("current user");
 	socket.emit('username',this.props.currentUser._id);}if(!this.props.authenticated){return[_react2.default.createElement(_reactRouter.Link,{key:1,className:'item',to:'/signin'},'Sign In'),_react2.default.createElement(_reactRouter.Link,{key:2,className:'item',to:'/signup'},'Sign Up')];}else{return[_react2.default.createElement(_reactRouter.Link,{key:2,className:"item "+(this.props.location.pathname==='/myfeed'?'active':''),to:'/myfeed'},'My Feed'),_react2.default.createElement(_reactRouter.Link,{key:1,className:"item "+(this.props.location.pathname==='/feed'?'active':''),to:'/feed'},'Explore'),_react2.default.createElement(_reactRouter.Link,{key:3,className:"item "+(this.props.location.pathname==='/users'?'active':''),to:'/users'},'Users'),_react2.default.createElement(_reactRouter.Link,{key:4,className:"item "+(this.props.location.pathname==='/profile'?'active':''),to:'/profile'},'You'),_react2.default.createElement('div',{key:5,className:'item dropdown'},_react2.default.createElement('a',{className:'black dropdown-toggle',onClick:this.viewed.bind(this),id:'notifications','data-toggle':'dropdown','aria-haspopup':'true','aria-expanded':'true'},_react2.default.createElement('i',{className:'icon mail'}),this.notification()),this.notificationList()),_react2.default.createElement('div',{key:6,className:'item center ui search'},_react2.default.createElement('div',{className:'ui icon input'},_react2.default.createElement('input',{className:'prompt',name:'search',type:'text',placeholder:'Search...'}),_react2.default.createElement('i',{className:'search icon'})),_react2.default.createElement('div',{className:'results'})),_react2.default.createElement('div',{key:7,className:'right menu'},_react2.default.createElement(_reactRouter.Link,{className:'item',to:'/signout'},'Sign Out'))];}}// Not used, alternate search method
 	},{key:'search',value:function search(e){var self=this;clearTimeout(timeoutID);var query=e.target.value;timeoutID=setTimeout(function(){if(query!==''){console.log(query);self.props.search(query);}},500);}},{key:'render',value:function render(){return(//   <nav className="navbar navbar-inverse">
 	//     <div className="container-fluid">
