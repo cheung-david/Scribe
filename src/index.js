@@ -45,7 +45,7 @@ ReactDOM.render(
         <Route path="myfeed" socket={socket} localFeed={true} component={RequireAuth(Feed)} />
         <Route path="profile" socket={socket} component={RequireAuth(UserProfile)} />
         <Route path="user/edit" component={RequireAuth(ProfileEdit)} />
-        <Route path="user/:id" component={RequireAuth(UserProfile)} />
+        <Route path="user/:id" socket={socket} component={RequireAuth(UserProfile)} />
         <Route path="users" socket={socket} component={RequireAuth(UserList)} />
       </Route>   
     </Router>  
