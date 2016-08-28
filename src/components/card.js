@@ -48,7 +48,8 @@ class Card extends Component {
             this.props.notify(this.props.authorId, { 
                 action: "liked",
                 from: this.props.currentUser.fullName,
-                content: "" 
+                content: "",
+                commentId: id 
             });
             this.props.addLike(id);
         } else {
@@ -82,7 +83,8 @@ class Card extends Component {
         this.props.notify(this.props.authorId, { 
             action: "commented",
             from: this.props.currentUser.fullName,
-            content: this.refs.comment.value
+            content: this.refs.comment.value,
+            commentId: this.props.id
         });
         this.refs.comment.value = "";
     }
