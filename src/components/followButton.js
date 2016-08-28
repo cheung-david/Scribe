@@ -59,7 +59,8 @@ class FollowButton extends Component {
         this.props.notify(this.props.userId, { 
             action: "followed",
             from: this.props.currentUser.fullName,
-            content: "" 
+            content: "",
+            commentId: "" 
         });
         this.props.follow(this.props.userId);
         this.props.insertFollowerList(this.props.userId);
