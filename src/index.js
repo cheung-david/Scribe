@@ -14,6 +14,7 @@ import Feed from './components/feed';
 import UserProfile from './components/userProfile';
 import ProfileEdit from './components/helper';
 import UserList from './components/userList';
+import ImagePage from './components/imagePage';
 import Welcome from './components/welcome';
 import RequireAuth from './components/auth/require_auth';
 import reducers from './reducers';
@@ -47,6 +48,7 @@ ReactDOM.render(
         <Route path="user/edit" component={RequireAuth(ProfileEdit)} />
         <Route path="user/:id" socket={socket} component={RequireAuth(UserProfile)} />
         <Route path="users" socket={socket} component={RequireAuth(UserList)} />
+        <Route path="image/:id" socket={socket} component={RequireAuth(ImagePage)} />
       </Route>   
     </Router>  
   </Provider>
