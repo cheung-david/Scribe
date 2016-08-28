@@ -3,7 +3,7 @@ import { browserHistory } from 'react-router';
 import { createHistory } from 'history'
 const history = createHistory();
 
-import { AUTH_USER, UNAUTH_USER, AUTH_ERROR, FETCH_MESSAGE, FETCH_FEED, FETCH_LIKES, FETCH_FOLLOWERS, 
+import { FETCH_IMAGE, AUTH_USER, UNAUTH_USER, AUTH_ERROR, FETCH_MESSAGE, FETCH_FEED, FETCH_LIKES, FETCH_FOLLOWERS, 
             FETCH_CURRENT_USER, FETCH_USERS, FETCH_USER, FETCH_POSTS, SEARCH_RESULTS, FETCH_NOTIFICATIONS,
             UPDATE_USER, UN_UPDATE_USER, UPDATE_USER_PROFILE_PIC, UN_UPDATE_USER_PROFILE_PIC,
             UN_UPDATE_PASS, UPDATE_PASS, FETCH_FOLLOWERS_LIST } from './types';
@@ -136,6 +136,24 @@ export function authError(error) {
         type: AUTH_ERROR,
         payload: error
     };
+}
+
+export function fetchImage(id) {
+    return function(dispatch) {
+        axios.get(`${ROOT_URL}/api/image/${id}`, {
+          headers: { authorization: localStorage.getItem('token') } },
+            { withCredentials: true })
+        .then(response => {
+            console.log("data", response);
+            dispatch({
+                type: FETCH_IMAGE,
+                payload: response.data.image
+            })
+        })
+        .catch(error => {
+            console.log(error);
+        })
+    }
 }
 
 export function fetchMessage() {

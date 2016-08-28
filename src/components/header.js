@@ -124,24 +124,24 @@ class Header extends Component {
     notificationList() {
         if(this.props.notifications && this.props.notifications.length > 0) {
             var notifications = this.props.notifications.map(function(item) {
-                return (<div key={item._id} className="event">
+                return (<Link key={item._id} className="event">
                             <div className="label">
                                 <img src={item.profilePic || "../../style/img/unknown_user.png"} />
                             </div>
                             <div className="content">
                                 <div className="summary">
-                                    <a className="user">
+                                    <a className="user highlight">
                                         {item.from}
                                     </a> &nbsp; has {item.action} your post
                                     <div className="date">
                                         {timeSince(item.date)}
                                     </div>
                                 </div>
-                                <div className="">
+                                <div className="summary">
                                     {item.content || ""}
                                 </div>
                             </div>
-                        </div>);
+                        </Link>);
             });
             return  (
                 <div className="dropdown-menu">

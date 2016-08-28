@@ -1,4 +1,4 @@
-import { FETCH_FOLLOWERS_LIST, UPDATE_PASS, UN_UPDATE_PASS, UPDATE_USER_PROFILE_PIC, UN_UPDATE_USER_PROFILE_PIC, UPDATE_USER, UN_UPDATE_USER, FETCH_NOTIFICATIONS, FETCH_CURRENT_USER, FETCH_MESSAGE, FETCH_FEED, FETCH_LIKES, FETCH_FOLLOWERS, FETCH_USER, FETCH_USERS, FETCH_POSTS, SEARCH_RESULTS } from '../actions/types';
+import { FETCH_IMAGE, FETCH_FOLLOWERS_LIST, UPDATE_PASS, UN_UPDATE_PASS, UPDATE_USER_PROFILE_PIC, UN_UPDATE_USER_PROFILE_PIC, UPDATE_USER, UN_UPDATE_USER, FETCH_NOTIFICATIONS, FETCH_CURRENT_USER, FETCH_MESSAGE, FETCH_FEED, FETCH_LIKES, FETCH_FOLLOWERS, FETCH_USER, FETCH_USERS, FETCH_POSTS, SEARCH_RESULTS } from '../actions/types';
 
 export default function(state = {}, action) {
     switch(action.type) {
@@ -35,7 +35,9 @@ export default function(state = {}, action) {
         case UN_UPDATE_PASS:
             return { ...state, error: '', updatedPass: false };    
         case FETCH_FOLLOWERS_LIST:
-            return { ...state, error: '', followers: action.payload };           
+            return { ...state, error: '', followers: action.payload };     
+        case FETCH_IMAGE:
+             return { ...state, error: '', image: action.payload };         
     }
     return state;
 }
