@@ -130,9 +130,9 @@ class Header extends Component {
                             </div>
                             <div className="content">
                                 <div className="summary">
-                                    <a className="user highlight">
+                                    <span className="user highlight">
                                         {item.from}
-                                    </a> &nbsp; has {item.action} your post
+                                    </span> &nbsp; has {item.action} your post
                                     <div className="date">
                                         {timeSince(item.date)}
                                     </div>
