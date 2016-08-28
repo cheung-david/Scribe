@@ -124,7 +124,7 @@ class Header extends Component {
     notificationList() {
         if(this.props.notifications && this.props.notifications.length > 0) {
             var notifications = this.props.notifications.map(function(item) {
-                return (<Link key={item._id} to={"/image/" + item.commendId} className="event">
+                return (<Link key={item._id} to={"/image/" + item.commentId} className="event">
                             <div className="label">
                                 <img src={item.profilePic || "../../style/img/unknown_user.png"} />
                             </div>
