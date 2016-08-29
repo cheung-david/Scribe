@@ -4,6 +4,33 @@ import * as actions from '../actions';
 var Link = require('react-router').Link;
 
 class UserBox extends Component {
+    componentWillMount() {
+        if(this.props.user) {
+           this.props.fetchFollowerList(this.props.user._id); 
+        }
+    }
+    
+    numFollowers() {
+        if(this.props.followers) {
+            return <span> {this.props.followers.length} </span>;
+        } else {
+            return <span> 0 </span>;
+        }
+    }
+    
+    userDescription() {
+        var desc = this.props.user.description;
+        if(this.props.user && this.props.user.description) {
+            if(desc.length > 20) {
+                return <span> {desc.substring(0,20)} ... </span>
+            } else {
+                return <span> {desc}  </span>
+            }
+        } else {
+            return <span>Empty Bio</span>
+        }
+    }
+    
     componentDidMount(){
         $('.special.cards .image').dimmer({
             on: 'hover'
@@ -27,20 +54,20 @@ class UserBox extends Component {
                         </div>
                     </div>
    
-                        <img src={this.props.user.profilePic || "../../style/img/unknown_user.png"} />
+                        <img className="user-image-height" src={this.props.user.profilePic || "../../style/img/unknown_user.png"} />
                
                     </div>
                     <div className="content">
                     <a className="header">{this.props.user.fullName || this.props.user.email }</a>
                     <div className="meta">
-                        <span className="date">Caption</span>
+                        <span className="date">{this.userDescription()}</span>
                         <div>{this.props.children}</div>
                     </div>
                     </div>
                     <div className="extra content">
                     <a>
                         <i className="users icon"></i>
-                        2 Members
+                        {this.numFollowers()} Followers
                     </a>
                     </div>
                 </div>
@@ -52,7 +79,7 @@ class UserBox extends Component {
 
 function mapStateToProps(state) {
     return {
-
+        followers: state.feed.followers || []
     }
 }
 
