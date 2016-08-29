@@ -5,14 +5,12 @@ var Link = require('react-router').Link;
 
 class UserBox extends Component {
     componentWillMount() {
-        if(this.props.user) {
-           this.props.fetchFollowerList(this.props.user._id); 
-        }
+        
     }
     
     numFollowers() {
-        if(this.props.followers) {
-            return <span> {this.props.followers.length} </span>;
+        if(this.props.user && this.props.user.followers) {
+            return <span> {this.props.user.followers.length} </span>;
         } else {
             return <span> 0 </span>;
         }
@@ -21,8 +19,8 @@ class UserBox extends Component {
     userDescription() {
         var desc = this.props.user.description;
         if(this.props.user && this.props.user.description) {
-            if(desc.length > 20) {
-                return <span> {desc.substring(0,20)} ... </span>
+            if(desc.length > 30) {
+                return <span> {desc.substring(0,30)}... </span>
             } else {
                 return <span> {desc}  </span>
             }
@@ -79,7 +77,7 @@ class UserBox extends Component {
 
 function mapStateToProps(state) {
     return {
-        followers: state.feed.followers || []
+
     }
 }
 
