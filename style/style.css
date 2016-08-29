@@ -1,4 +1,14 @@
 
+@media (min-width: 1200px){
+    .container {
+        width: 970px !important;
+    }
+}
+
+.user-image-height {
+    height: 210px;
+}
+
 body {
     background-color: #fafafa !important;
 }
