@@ -6,7 +6,7 @@
 }
 
 .user-image-height {
-    height: 210px;
+    height: 210px !important;
 }
 
 body {
