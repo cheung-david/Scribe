@@ -19,8 +19,8 @@ class UserBox extends Component {
     userDescription() {
         var desc = this.props.user.description;
         if(this.props.user && this.props.user.description) {
-            if(desc.length > 30) {
-                return <span> {desc.substring(0,30)}... </span>
+            if(desc.length > 23) {
+                return <span> {desc.substring(0,23)}... </span>
             } else {
                 return <span> {desc}  </span>
             }
