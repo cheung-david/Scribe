@@ -80,7 +80,7 @@ class UserProfile extends Component {
                             <div className="col-lg-10 col-md-10 col-sm-12 col-xs-12" key={2}>
                                 <h1>{this.props.user.fullName || this.props.user.email}</h1>
                                     <FollowButton userId={this.props.user._id}/>
-                                    <div className="user_content">{this.props.description || "Empty Bio"}</div>
+                                    <div className="user_content">{this.props.user.description || "Empty Bio"}</div>
                                     <br/>
                                     <div className="user_follows">Following: {this.props.user.following.length} &nbsp; Followers: {this.props.followers.length}</div>
                                     <br/>
