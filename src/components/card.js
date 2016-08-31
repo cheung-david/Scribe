@@ -91,7 +91,7 @@ class Card extends Component {
     
     heartColour() {
         if(this.props.currentUser && this.props.currentUser.liked) {
-            return  ((this.props.currentUser.liked.indexOf(this.props.id) > 0) ? "icon red" : "outline icon");
+            return  ((this.props.currentUser.liked.indexOf(this.props.id) >= 0) ? "icon red" : "outline icon");
         } else {
             return "";
         }
