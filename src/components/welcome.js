@@ -24,6 +24,9 @@ class Feature extends Component {
                             <div className="intro-heading">Scribe</div>
                             <div className="intro-lead-in">Track And Share Experiences From Around The World</div>
                             <a href="#services" className="btn btn-xl" data-toggle="modal" data-target=".login-modal">Join Now!</a>
+                            <div>
+                            <a className="intro-download" href='https://play.google.com/store/apps/details?id=com.dc.scribe&utm_source=global_co&utm_medium=prtnr&utm_content=Mar2515&utm_campaign=PartBadge&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png'/></a>
+                            </div>
                         </div>
                     </div>
                     
@@ -66,7 +69,7 @@ class Feature extends Component {
                                 <i className="fa fa fa-android fa-stack-1x fa-inverse"></i>
                             </span>
                             <h4 className="service-heading">Android</h4>
-                            <p className="text-muted">Currently only supports Android and Web. Sorry iPhone is not currently supported, stay tuned!</p>
+                            <p className="text-muted">Currently only supports Android and Web. Sorry iPhone is not currently supported, stay tuned! <br/><a href="https://play.google.com/store/apps/details?id=com.dc.scribe">Download On GooglePlay!</a></p>
                         </div>
                         <div className="col-md-4">
                             <span className="fa-stack fa-4x">
@@ -82,7 +85,7 @@ class Feature extends Component {
                                 <i className="fa fa-code fa-stack-1x fa-inverse"></i>
                             </span>
                             <h4 className="service-heading">Updates</h4>
-                            <p className="text-muted">This is just the beginning of the journey. New and cool features still rolling in!</p>
+                            <p className="text-muted">We are currently in Beta. This is just the beginning of the journey. New and cool features still rolling in!</p>
                         </div>
                     </div>
                 </div>

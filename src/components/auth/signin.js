@@ -7,6 +7,13 @@ class SignIn extends Component {
         router: React.PropTypes.object //React.PropTypes.func.isRequired //
     };
                 
+    constructor(props) {
+        super(props);
+        this.state = {
+            error: false
+        }
+    }
+    
     handleFormSubmit({ email, password }) {
         // TODO log user in
         this.props.signinUser({ email, password }, this.context.router);
@@ -71,11 +78,11 @@ class SignIn extends Component {
         // Image retrieval http://graph.facebook.com/userid_here/picture?type=large
         console.log('Welcome!  Fetching your information.... ');
         var self = this;
-        FB.api('/me?scope=email', function(response) {
-            console.log(response);
+        FB.api('/me', function(response) {
+            //console.log(response);
             console.log('Successful login for: ' + response.name    );
             document.getElementById('status').innerHTML = 'Thanks for logging in, ' + response.name + '!';
-            //self.context.router.push('/myfeed');
+            self.context.router.push('/myfeed');
         });
 
     }
@@ -83,7 +90,7 @@ class SignIn extends Component {
     // This is called with the results from from FB.getLoginStatus().
     statusChangeCallback(response) {
         console.log('statusChangeCallback');
-        console.log(response);
+        //console.log(response);
         // The response object is returned with a status field that lets the
         // app know the current login status of the person.
         // Full docs on the response object can be found in the documentation
@@ -92,15 +99,28 @@ class SignIn extends Component {
             this.props.signinUserFB(response.authResponse.accessToken, this.context.router);
             // Logged into your app and Facebook.
             this.successAPI();
-        } else if (response.status === 'not_authorized') {
+        } else if (response.status === 'not_authorized'  || response.status=='unknown') {
             // The person is logged into Facebook, but not your app.
-            document.getElementById('status').innerHTML = 'Please log ' +
-            'into this app. Click again to login.';
+            document.getElementById('status').innerHTML = 'Something went wrong. Please click ' +
+            'the Facebook button to try again.';
+            this.setState({ error: true });
+            //FB.login(this.getLoginStatus, { scope: 'email, public_profile, user_friends' });
+            // FB.login(function(responseLogin) {
+            //         FB.api('/me', function(responseMe) {
+            //             if (!responseMe.id){ 
+            //                 return false;
+            //             } else {
+            //                 this.props.signinUserFB(response.authResponse.accessToken, this.context.router);
+            //                 // Logged into your app and Facebook.
+            //                 this.successAPI();
+            //             }
+            //         });
+            // });
         } else {
             // The person is not logged into Facebook, so we're not sure if
             // they are logged into this app or not.
-            document.getElementById('status').innerHTML = 'Please log ' +
-            'into Facebook. Click again to login.';
+            document.getElementById('status').innerHTML = 'Something went wrong. Please click ' +
+            'the Facebook button to try again.';
         }
     }
 
@@ -114,7 +134,7 @@ class SignIn extends Component {
     }
 
     handleClick() {
-        FB.login(this.checkLoginState());
+        FB.login(this.checkLoginState(), { scope: 'email, public_profile, user_friends' });
     }
 
     render() {
@@ -133,7 +153,7 @@ class SignIn extends Component {
                     {this.renderAlert()}
                     <button action="submit" className="btn btn-primary">Sign in</button>        
                 </form>  
-                <div id="status">
+                <div id="status" className={this.state.error ? "alert alert-warning" : ""}>
                 </div>
                 <div className="loginButton">
                     <a href="#" onClick={this.handleClick.bind(this)}>

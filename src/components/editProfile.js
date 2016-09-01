@@ -175,7 +175,7 @@ function validate(formProps) {
     if(!formProps.email) {
         errors.email = 'Please enter an email';
     }
-    if(!formProps.name) {
+    if(!formProps.name || !formProps.replace(/\s/g, '').length) {
         errors.name = 'Please enter your name';
     }     
     return errors;    
