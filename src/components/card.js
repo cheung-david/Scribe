@@ -13,10 +13,16 @@ class Card extends Component {
         this.state = {
             dynamicLikes: this.props.likes
         };
+        this.mounted = false;
     }
 
     componentWillMount() {
+        this.mounted = true;
         this.props.fetchUser();
+    }
+    
+    componentWillUnmount() {
+        this.mounted = false;
     }
 
     componentDidMount() {
@@ -41,7 +47,7 @@ class Card extends Component {
     
     
     addLike(id) {
-        console.log(this.props.currentUser.liked);
+        //console.log(this.props.currentUser.liked);
         var liked = this.props.currentUser.liked;
         if(this.props.currentUser.liked.indexOf(id) < 0){         
             liked.push(id);
@@ -78,7 +84,7 @@ class Card extends Component {
     }
         
     addComment() {
-        console.log("adding comment: " + this.refs.comment.value);
+        //console.log("adding comment: " + this.refs.comment.value);
         this.props.addComment(this.props.id, this.refs.comment.value);
         this.props.notify(this.props.authorId, { 
             action: "commented",
