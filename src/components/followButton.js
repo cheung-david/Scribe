@@ -21,7 +21,7 @@ class FollowButton extends Component {
     
     generateFollowing() {
         if(this.props.following){
-            console.log(this.props.following);
+            //console.log(this.props.following);
             var following = this.props.following.map(follower => {
                 return (<p key={follower}> {follower} </p>);
             });
@@ -40,7 +40,7 @@ class FollowButton extends Component {
             text = 'Unfollow';
             action = this.unfollow.bind(this);
         } else {
-            console.log(this.props.following, this.props.userId);
+            //console.log(this.props.following, this.props.userId);
             text = 'Follow';
             action = this.follow.bind(this);
         }
