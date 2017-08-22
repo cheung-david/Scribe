@@ -41,6 +41,10 @@ class ChangePassword extends Component {
         }    
     }   
     
+    guestAccount() {
+        return this.props.currentUser.email == "feebas300@gmail.com";
+    }    
+    
     renderForm() {
         if(this.props.currentUser) {
             if(this.props.currentUser.socialMedia) {
@@ -51,17 +55,17 @@ class ChangePassword extends Component {
                         <span>
                             <fieldset className="form-group">
                                 <label>Current Password:</label>
-                                <input {...oldPassword} className="form-control" type="password" />
+                                <input {...oldPassword} className="form-control" disabled={this.guestAccount()} type="password" />
                                 {oldPassword.touched && oldPassword.error && <div className="error">{oldPassword.error}</div>}
                             </fieldset>
                             <fieldset className="form-group">
                                 <label>New Password:</label>
-                                <input {...password} className="form-control" type="password" />
+                                <input {...password} className="form-control" disabled={this.guestAccount()} type="password" />
                                 {password.touched && password.error && <div className="error">{password.error}</div>}
                             </fieldset> 
                             <fieldset className="form-group">
                                 <label>Confirm New Password:</label>
-                                <input {...passwordConfirm} className="form-control" type="password" />
+                                <input {...passwordConfirm} className="form-control" disabled={this.guestAccount()} type="password" />
                                 {passwordConfirm.touched && passwordConfirm.error && <div className="error">{passwordConfirm.error}</div>}
                             </fieldset>                           
                         </span>);  
@@ -79,7 +83,7 @@ class ChangePassword extends Component {
                     {this.renderForm()}
                     {this.renderAlert()}   
                     {this.renderSuccess()}       
-                    <button action="submit" className="btn btn-primary">Save!</button>        
+                    <button action="submit" disabled={this.guestAccount()} className="btn btn-primary">Save!</button>        
                 </form>
           </div> 
         );

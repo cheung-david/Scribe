@@ -8,7 +8,10 @@ class Feature extends Component {
     static contextTypes = {
         router: React.PropTypes.object
     }
-    
+    handleGuest() {
+        // TODO log user in
+        this.props.signinUser({ email: "feebas300@gmail.com", password: "temppassword" }, this.context.router);
+    }
     componentWillMount() {
         if(this.props.authenticated){
             this.context.router.push('/myfeed');
@@ -24,8 +27,10 @@ class Feature extends Component {
                             <div className="intro-heading">Scribe</div>
                             <div className="intro-lead-in">Track And Share Experiences From Around The World</div>
                             <a href="#services" className="btn btn-xl" data-toggle="modal" data-target=".login-modal">Join Now!</a>
+                            <button type="button" className="btn btn-default btn-xl" onClick={this.handleGuest.bind(this)}>Preview as Guest</button>
                             <div>
-                            <a className="intro-download" href='https://play.google.com/store/apps/details?id=com.dc.scribe&utm_source=global_co&utm_medium=prtnr&utm_content=Mar2515&utm_campaign=PartBadge&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png'/></a>
+                                <a className="intro-download" href='https://play.google.com/store/apps/details?id=com.dc.scribe&utm_source=global_co&utm_medium=prtnr&utm_content=Mar2515&utm_campaign=PartBadge&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'>
+                                <img alt='Get it on GooglePlay' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png'/></a>
                             </div>
                         </div>
                     </div>
