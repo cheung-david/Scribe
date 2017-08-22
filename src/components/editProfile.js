@@ -89,7 +89,10 @@ class EditProfile extends Component {
             uploadFile.value = '';
         }       
     }
-         
+    
+    guestAccount() {
+        return this.props.currentUser.email == "feebas300@gmail.com";
+    }     
         
     renderProfilePicture() {
         if(this.props.currentUser){
@@ -106,17 +109,17 @@ class EditProfile extends Component {
                     <span>
                         <fieldset className="form-group">
                             <label>Email:</label>
-                            <input {...email} className="form-control" type="email" defaultValue={this.props.currentUser.email || ''} value={this.props.value} />
+                            <input {...email} className="form-control" disabled={this.guestAccount()} type="email" defaultValue={this.props.currentUser.email || ''} value={this.props.value} />
                             {email.touched && email.error && <div className="error">{email.error}</div>}
                         </fieldset>
                         <fieldset className="form-group">
                             <label>Full Name:</label>
-                            <input {...name} className="form-control" type="text" defaultValue={this.props.currentUser.fullName || ''} value={this.props.value} />
+                            <input {...name} className="form-control" disabled={this.guestAccount()} type="text" defaultValue={this.props.currentUser.fullName || ''} value={this.props.value} />
                             {name.touched && name.error && <div className="error">{name.error}</div>}
                         </fieldset>
                         <fieldset className="form-group">
                             <label>Bio:</label>
-                            <textarea {...description} rows="3" cols="50" className="form-control" defaultValue={this.props.currentUser.description || ''} value={this.props.value}>
+                            <textarea {...description} rows="3" cols="50" disabled={this.guestAccount()} className="form-control" defaultValue={this.props.currentUser.description || ''} value={this.props.value}>
                             </textarea>
                         </fieldset>
                     </span>);     
@@ -139,7 +142,7 @@ class EditProfile extends Component {
                                             <label>Edit Profile Picture</label>
                                             <input id="imgInput" ref="file" type="file" name="uploadPic" className="uploadPic form-control" />
                                             <br/>
-                                            <button className="ui inverted button" onClick={this.handleSubmit.bind(this)}>  Save Changes </button>
+                                            <button className="ui inverted button" disabled={this.guestAccount()} onClick={this.handleSubmit.bind(this)}>  Save Changes </button>
                                         </div>
                                     </div>
                                 </div>
@@ -154,7 +157,7 @@ class EditProfile extends Component {
                     {this.renderForm()}
                     {this.renderAlert()}   
                     {this.renderSuccess()}       
-                    <button action="submit" className="btn btn-primary">Save!</button>        
+                    <button action="submit" disabled={this.guestAccount()} className="btn btn-primary">Save!</button>        
                 </form>
           </div> 
         );
@@ -175,7 +178,7 @@ function validate(formProps) {
     if(!formProps.email) {
         errors.email = 'Please enter an email';
     }
-    if(!formProps.name || !formProps.replace(/\s/g, '').length) {
+    if(!formProps.name || !formProps.name.replace(/\s/g, '').length) {
         errors.name = 'Please enter your name';
     }     
     return errors;    
